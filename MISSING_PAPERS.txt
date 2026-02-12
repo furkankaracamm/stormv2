@@ -1,0 +1,179 @@
+[2026-02-09 22:30] TITLE: Test Missing Paper (Drop any PDF in library to clear me) | DOI: 10.1234/test.pdf
+[2026-02-09 22:37] TITLE: Realistic Approach towards Quantitative Analysis and Simulation of EEHC-Based Routing for Wireless Sensor Networks | DOI: http://arxiv.org/abs/1002.1151v1
+[2026-02-09 22:37] TITLE: Why Machine Learning Integrated Patient Flow Simulation? | DOI: http://arxiv.org/abs/2104.08203v1
+[2026-02-09 22:37] TITLE: Social Simulacra: Creating Populated Prototypes for Social Computing Systems | DOI: http://arxiv.org/abs/2208.04024v1
+[2026-02-09 22:37] TITLE: Modelling Reactive and Proactive Behaviour in Simulation | DOI: http://arxiv.org/abs/1006.3652v1
+[2026-02-09 22:37] TITLE: Simulacra as Conscious Exotica | DOI: http://arxiv.org/abs/2402.12422v2
+[2026-02-09 22:38] TITLE: Investigating Output Accuracy for a Discrete Event Simulation Model and an Agent Based Simulation Model | DOI: http://arxiv.org/abs/1003.4141v1
+[2026-02-09 22:38] TITLE: Optimisation of a Crossdocking Distribution Centre Simulation Model | DOI: http://arxiv.org/abs/1003.3775v1
+[2026-02-09 22:38] TITLE: Navigating Surveillance Capitalism: A Critical Analysis through philosophical perspectives in Computer Ethics | DOI: http://arxiv.org/abs/2305.03787v1
+[2026-02-09 22:38] TITLE: Personal autonomy and surveillance capitalism: possible future developments | DOI: http://arxiv.org/abs/2302.08946v1
+[2026-02-09 22:38] TITLE: On the Role of Identity in Surveillance | DOI: http://arxiv.org/abs/1408.3438v1
+[2026-02-09 22:39] TITLE: Surveilling Surveillance: Estimating the Prevalence of Surveillance Cameras with Street View Data | DOI: http://arxiv.org/abs/2105.01764v3
+[2026-02-09 22:39] TITLE: An Empirical Inquiry into Surveillance Capitalism: Web Tracking | DOI: http://arxiv.org/abs/2508.07454v2
+[2026-02-09 22:39] TITLE: Simulated Affection, Engineered Trust: How Anthropomorphic AI Benefits Surveillance Capitalism | DOI: http://arxiv.org/abs/2511.06472v1
+[2026-02-09 22:39] TITLE: SOVABench: A Vehicle Surveillance Action Retrieval Benchmark for Multimodal Large Language Models | DOI: http://arxiv.org/abs/2601.04824v2
+[2026-02-09 22:39] TITLE: Person Re-identification for Real-world Surveillance Systems | DOI: http://arxiv.org/abs/1607.05975v1
+[2026-02-09 22:39] TITLE: Surveillance Capitalism Revealed: Tracing The Hidden World Of Web Data Collection | DOI: http://arxiv.org/abs/2412.17944v1
+[2026-02-09 22:39] TITLE: Black Feminist Musings on Algorithmic Oppression | DOI: http://arxiv.org/abs/2101.09869v2
+[2026-02-09 22:40] TITLE: DataLab: A Platform for Data Analysis and Intervention | DOI: http://arxiv.org/abs/2202.12875v1
+[2026-02-09 22:40] TITLE: A Survey on Computational Propaganda Detection | DOI: http://arxiv.org/abs/2007.08024v1
+[2026-02-09 22:40] TITLE: Proppy: A System to Unmask Propaganda in Online News | DOI: http://arxiv.org/abs/1912.06810v1
+[2026-02-09 22:40] TITLE: Prta: A System to Support the Analysis of Propaganda Techniques in the News | DOI: http://arxiv.org/abs/2005.05854v1
+[2026-02-09 22:40] TITLE: Detecting Propaganda Techniques in Memes | DOI: http://arxiv.org/abs/2109.08013v1
+[2026-02-09 22:40] TITLE: Understanding BERT performance in propaganda analysis | DOI: http://arxiv.org/abs/1911.04525v1
+[2026-02-09 22:40] TITLE: Neural Architectures for Fine-Grained Propaganda Detection in News | DOI: http://arxiv.org/abs/1909.06162v1
+[2026-02-09 22:41] TITLE: Propaganda to Hate: A Multimodal Analysis of Arabic Memes with Multi-Agent LLMs | DOI: http://arxiv.org/abs/2409.07246v2
+[2026-02-09 22:41] TITLE: Overview of the WANLP 2022 Shared Task on Propaganda Detection in Arabic | DOI: http://arxiv.org/abs/2211.10057v1
+[2026-02-09 22:41] TITLE: Large Language Models for Propaganda Span Annotation | DOI: http://arxiv.org/abs/2311.09812v3
+[2026-02-09 22:41] TITLE: Characterizing networks of propaganda on Twitter: a case study | DOI: http://arxiv.org/abs/2005.10004v2
+[2026-02-09 22:42] TITLE: Nexus at ArAIEval Shared Task: Fine-Tuning Arabic Language Models for Propaganda and Disinformation Detection | DOI: http://arxiv.org/abs/2311.03184v1
+[2026-02-09 22:42] TITLE: Team QCRI-MIT at SemEval-2019 Task 4: Propaganda Analysis Meets Hyperpartisan News Detection | DOI: http://arxiv.org/abs/1904.03513v1
+[2026-02-09 22:42] TITLE: Breakdown of metastable political duopoly due to asymmetry of emotions in partisan propaganda | DOI: http://arxiv.org/abs/1507.00126v2
+[2026-02-09 22:42] TITLE: SF-TIM: A Simple Framework for Enhancing Quadrupedal Robot Jumping Agility by Combining Terrain Imagination and Measurement | DOI: http://arxiv.org/abs/2408.00486v2
+[2026-02-09 22:43] TITLE: Counterfactual Analysis by Algorithmic Complexity: A metric between possible worlds | DOI: http://arxiv.org/abs/2211.07315v1
+[2026-02-09 22:44] TITLE: On the Role of Identity in Surveillance | DOI: http://arxiv.org/abs/1408.3438v1
+[2026-02-09 22:44] TITLE: Surveilling Surveillance: Estimating the Prevalence of Surveillance Cameras with Street View Data | DOI: http://arxiv.org/abs/2105.01764v3
+[2026-02-09 22:44] TITLE: SOVABench: A Vehicle Surveillance Action Retrieval Benchmark for Multimodal Large Language Models | DOI: http://arxiv.org/abs/2601.04824v2
+[2026-02-09 22:44] TITLE: Person Re-identification for Real-world Surveillance Systems | DOI: http://arxiv.org/abs/1607.05975v1
+[2026-02-09 22:44] TITLE: Cognitive Surveillance: Why does it never appear among the AVSS Conferences topics? | DOI: http://arxiv.org/abs/1406.6045v1
+[2026-02-09 22:45] TITLE: Traffic Danger Recognition With Surveillance Cameras Without Training Data | DOI: http://arxiv.org/abs/1811.11969v1
+[2026-02-09 22:45] TITLE: 5G Integrated Communications, Navigation, and Surveillance: A Vision and Future Research Perspectives | DOI: http://arxiv.org/abs/2502.13015v1
+[2026-02-09 22:45] TITLE: Spatio-Temporal Analysis of Surveillance Data | DOI: http://arxiv.org/abs/1711.00555v1
+[2026-02-09 22:47] TITLE: Mining Disinformation and Fake News: Concepts, Methods, and Recent Advancements | DOI: http://arxiv.org/abs/2001.00623v1
+[2026-02-09 22:47] TITLE: DeBiasMe: De-biasing Human-AI Interactions with Metacognitive AIED (AI in Education) Interventions | DOI: http://arxiv.org/abs/2504.16770v1
+[2026-02-09 22:48] TITLE: [Advances in Machine Learning &amp; Artificial Intelligence] An Empirical Study of AI-Generated Text Detection Tools | DOI: 10.33140/amlai.04.02.03
+[2026-02-09 22:48] TITLE: [Textual Turnings: An International Peer-Reviewed Journal in English Studies] American Vs. Chinese Newspapers’ Attitude Towards AI-generated Chatbots: An Appraisal Analysis. | DOI: 10.21608/ttaip.2025.475934
+[2026-02-09 22:48] TITLE: Acoustic Communication for Medical Nanorobots | DOI: http://arxiv.org/abs/1202.0568v2
+[2026-02-09 22:48] TITLE: Theory of Robot Communication: I. The Medium is the Communication Partner | DOI: http://arxiv.org/abs/1812.04408v2
+[2026-02-09 22:49] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-09 23:41] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-09 23:42] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-09 23:43] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-09 23:45] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] POP POLYVOCALITY AND INTERNET MEMES: AS A REFLECTION OF SOCIO-POLITICAL DISCOURSE OF TURKISH YOUTH IN SOCIAL MEDIA | DOI: 10.17361/uhive.20161016628
+[2026-02-09 23:45] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-09 23:45] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-09 23:45] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] POP POLYVOCALITY AND INTERNET MEMES: AS A REFLECTION OF SOCIO-POLITICAL DISCOURSE OF TURKISH YOUTH IN SOCIAL MEDIA | DOI: 10.17361/uhive.20161016628
+[2026-02-09 23:58] TITLE: [Internet of Things] Combining Multi-Agent Systems and Artificial Intelligence of Things: Technical challenges and gains | DOI: 10.1016/j.iot.2024.101364
+[2026-02-09 23:58] TITLE: [Simulation Modelling Practice and Theory] Analyzing and visual programming internet of things and autonomous decentralized systems | DOI: 10.1016/j.simpat.2016.05.002
+[2026-02-09 23:58] TITLE: [Internet of Things] Artificial intelligence-driven security framework for internet of things-enhanced digital twin networks | DOI: 10.1016/j.iot.2025.101564
+[2026-02-09 23:58] TITLE: [Future Internet] Artificial Intelligence of Things as New Paradigm in Aviation Health Monitoring Systems | DOI: 10.3390/fi16080276
+[2026-02-09 23:58] TITLE: [Internet of Things and Cyber-Physical Systems] Artificial intelligence enabled Digital Twins for training autonomous cars | DOI: 10.1016/j.iotcps.2022.05.001
+[2026-02-09 23:58] TITLE: [Internet of Things] Towards artificial intelligence internet of things (AIoT) and intelligent edge: The intelligent edge is where action is! | DOI: 10.1016/j.iot.2023.100752
+[2026-02-09 23:58] TITLE: [Discover Internet of Things] Role of Artificial Intelligence in the Internet of Things (IoT) cybersecurity | DOI: 10.1007/s43926-020-00001-4
+[2026-02-09 23:58] TITLE: [Future Internet] Blockchain and Artificial Intelligence for Decentralized Edge Environments | DOI: 10.3390/fi17010045
+[2026-02-09 23:58] TITLE: [IEEE Internet of Things Journal] Wattsworth: An Open-Source Platform for Decentralized Sensor Networks | DOI: 10.1109/jiot.2019.2946853
+[2026-02-09 23:58] TITLE: [Internet of Things] Artificial intelligence and internet of things to improve smart hospitality services | DOI: 10.1016/j.iot.2025.101544
+[2026-02-09 23:58] TITLE: [Internet of Things and Artificial Intelligence Journal] Artificial Intelligence of Internet of Things (AIoT) Technology-based Law Enforcement Process | DOI: 10.31763/iota.v3i1.577
+[2026-02-09 23:58] TITLE: [Internet of Things and Artificial Intelligence Journal] Artificial-Based Pulse Learning Web Application Intelligence Using Convolutional Neural Networks | DOI: 10.31763/iota.v5i2.917
+[2026-02-09 23:59] TITLE: [Internet of Things and Artificial Intelligence Journal] Artificial Intelligence of Internet of Things (AIoT) Technology-based Law Enforcement Process | DOI: 10.31763/iota.v3i1.577
+[2026-02-09 23:59] TITLE: [Internet of Things] Artificial intelligence-driven security framework for internet of things-enhanced digital twin networks | DOI: 10.1016/j.iot.2025.101564
+[2026-02-09 23:59] TITLE: [Discover Internet of Things] Role of Artificial Intelligence in the Internet of Things (IoT) cybersecurity | DOI: 10.1007/s43926-020-00001-4
+[2026-02-09 23:59] TITLE: [IEEE Internet of Things Journal] Wattsworth: An Open-Source Platform for Decentralized Sensor Networks | DOI: 10.1109/jiot.2019.2946853
+[2026-02-09 23:59] TITLE: [Internet of Things and Artificial Intelligence Journal] Artificial-Based Pulse Learning Web Application Intelligence Using Convolutional Neural Networks | DOI: 10.31763/iota.v5i2.917
+[2026-02-09 23:59] TITLE: [Internet of Things] Artificial intelligence and internet of things to improve smart hospitality services | DOI: 10.1016/j.iot.2025.101544
+[2026-02-09 23:59] TITLE: [Future Internet] Blockchain and Artificial Intelligence for Decentralized Edge Environments | DOI: 10.3390/fi17010045
+[2026-02-09 23:59] TITLE: [Internet of Things] Combining Multi-Agent Systems and Artificial Intelligence of Things: Technical challenges and gains | DOI: 10.1016/j.iot.2024.101364
+[2026-02-09 23:59] TITLE: [Internet of Things and Cyber-Physical Systems] Artificial intelligence enabled Digital Twins for training autonomous cars | DOI: 10.1016/j.iotcps.2022.05.001
+[2026-02-09 23:59] TITLE: [Simulation Modelling Practice and Theory] Analyzing and visual programming internet of things and autonomous decentralized systems | DOI: 10.1016/j.simpat.2016.05.002
+[2026-02-09 23:59] TITLE: [Internet of Things] Towards artificial intelligence internet of things (AIoT) and intelligent edge: The intelligent edge is where action is! | DOI: 10.1016/j.iot.2023.100752
+[2026-02-09 23:59] TITLE: [Future Internet] Artificial Intelligence of Things as New Paradigm in Aviation Health Monitoring Systems | DOI: 10.3390/fi16080276
+[2026-02-10 00:00] TITLE: [Internet of Things] Artificial intelligence-driven security framework for internet of things-enhanced digital twin networks | DOI: 10.1016/j.iot.2025.101564
+[2026-02-10 00:00] TITLE: [Internet of Things] Artificial intelligence and internet of things to improve smart hospitality services | DOI: 10.1016/j.iot.2025.101544
+[2026-02-10 00:00] TITLE: [Discover Internet of Things] Role of Artificial Intelligence in the Internet of Things (IoT) cybersecurity | DOI: 10.1007/s43926-020-00001-4
+[2026-02-10 00:00] TITLE: [Future Internet] Blockchain and Artificial Intelligence for Decentralized Edge Environments | DOI: 10.3390/fi17010045
+[2026-02-10 00:00] TITLE: [Internet of Things and Cyber-Physical Systems] Artificial intelligence enabled Digital Twins for training autonomous cars | DOI: 10.1016/j.iotcps.2022.05.001
+[2026-02-10 00:00] TITLE: [Internet of Things] Towards artificial intelligence internet of things (AIoT) and intelligent edge: The intelligent edge is where action is! | DOI: 10.1016/j.iot.2023.100752
+[2026-02-10 00:00] TITLE: [Simulation Modelling Practice and Theory] Analyzing and visual programming internet of things and autonomous decentralized systems | DOI: 10.1016/j.simpat.2016.05.002
+[2026-02-10 00:00] TITLE: [IEEE Internet of Things Journal] Wattsworth: An Open-Source Platform for Decentralized Sensor Networks | DOI: 10.1109/jiot.2019.2946853
+[2026-02-10 00:00] TITLE: [Internet of Things] Combining Multi-Agent Systems and Artificial Intelligence of Things: Technical challenges and gains | DOI: 10.1016/j.iot.2024.101364
+[2026-02-10 00:00] TITLE: [Internet of Things and Artificial Intelligence Journal] Artificial Intelligence of Internet of Things (AIoT) Technology-based Law Enforcement Process | DOI: 10.31763/iota.v3i1.577
+[2026-02-10 00:00] TITLE: [Internet of Things and Artificial Intelligence Journal] Artificial-Based Pulse Learning Web Application Intelligence Using Convolutional Neural Networks | DOI: 10.31763/iota.v5i2.917
+[2026-02-10 00:00] TITLE: [Future Internet] Artificial Intelligence of Things as New Paradigm in Aviation Health Monitoring Systems | DOI: 10.3390/fi16080276
+[2026-02-10 00:03] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] POP POLYVOCALITY AND INTERNET MEMES: AS A REFLECTION OF SOCIO-POLITICAL DISCOURSE OF TURKISH YOUTH IN SOCIAL MEDIA | DOI: 10.17361/uhive.20161016628
+[2026-02-10 00:03] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Artificial Intelligence in Sustainable Fashion Marketing: Transforming the Supply Chain Landscape | DOI: 10.56614/eiprmj.v8i2y19.363
+[2026-02-10 00:03] TITLE: [Asian Journal of Research in Computer Science] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.9734/ajrcos/2025/v18i1549
+[2026-02-10 00:03] TITLE: [Galactica Media: Journal of Media Studies] Artificial Intelligence and Internet Journalism: Presentation of Artificial Intelligence News to Internet and X (Twitter) Users in Türkiye | DOI: 10.46539/gmd.v7i3.578
+[2026-02-10 00:03] TITLE: [Journal of Medical Internet Research] Gender Bias When Using Artificial Intelligence to Assess Anorexia Nervosa on Social Media: Data-Driven Study | DOI: 10.2196/45184
+[2026-02-10 00:03] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] INTERNET AND SOCIAL MEDIA AS A DEMOCRATIC THREAT OR PARTICIPATION TOOL | DOI: 10.17361/uhive.20161016618
+[2026-02-10 00:03] TITLE: [Journal of Social Change] Changing Social Learning Theory Through Reliance on the Internet of Things and Artificial Intelligence | DOI: 10.5590/josc.2020.12.1.08
+[2026-02-10 00:03] TITLE: [Information] Speaking like Humans, Spreading like Machines: A Study on Opinion Manipulation by Artificial-Intelligence-Generated Content Driving the Internet Water Army on Social Media | DOI: 10.3390/info16100850
+[2026-02-10 00:03] TITLE: [Future Internet] Emotional Sequencing as a Marker of Manipulation in Social Media Disinformation | DOI: 10.3390/fi17120546
+[2026-02-10 00:03] TITLE: [Journal of Medical Internet Research] Public Perception of Artificial Intelligence in Medical Care: Content Analysis of Social Media | DOI: 10.2196/16649
+[2026-02-10 00:03] TITLE: [Philosophy &amp; Technology] Baudrillard and the Dead Internet Theory. Revisiting Baudrillard’s (dis)trust in Artificial Intelligence | DOI: 10.1007/s13347-025-00878-5
+[2026-02-10 00:03] TITLE: [SSRN Electronic Journal] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.2139/ssrn.5085878
+[2026-02-10 00:03] TITLE: [Journal of Medical Internet Research] Artificial Intelligence–Based Ethical Hacking for Health Information Systems: Simulation Study | DOI: 10.2196/41748
+[2026-02-10 00:03] TITLE: [International Journal of Science and Research (IJSR)] Leveraging Artificial Intelligence and Machine Learning to Profile Internet Users through Media Content | DOI: 10.21275/sr231116140241
+[2026-02-10 00:04] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] INTERNET AND SOCIAL MEDIA AS A DEMOCRATIC THREAT OR PARTICIPATION TOOL | DOI: 10.17361/uhive.20161016618
+[2026-02-10 00:04] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Artificial Intelligence in Sustainable Fashion Marketing: Transforming the Supply Chain Landscape | DOI: 10.56614/eiprmj.v8i2y19.363
+[2026-02-10 00:04] TITLE: [Future Internet] Emotional Sequencing as a Marker of Manipulation in Social Media Disinformation | DOI: 10.3390/fi17120546
+[2026-02-10 00:04] TITLE: [Information] Speaking like Humans, Spreading like Machines: A Study on Opinion Manipulation by Artificial-Intelligence-Generated Content Driving the Internet Water Army on Social Media | DOI: 10.3390/info16100850
+[2026-02-10 00:04] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] POP POLYVOCALITY AND INTERNET MEMES: AS A REFLECTION OF SOCIO-POLITICAL DISCOURSE OF TURKISH YOUTH IN SOCIAL MEDIA | DOI: 10.17361/uhive.20161016628
+[2026-02-10 00:04] TITLE: [International Journal of Science and Research (IJSR)] Leveraging Artificial Intelligence and Machine Learning to Profile Internet Users through Media Content | DOI: 10.21275/sr231116140241
+[2026-02-10 00:04] TITLE: [Journal of Social Change] Changing Social Learning Theory Through Reliance on the Internet of Things and Artificial Intelligence | DOI: 10.5590/josc.2020.12.1.08
+[2026-02-10 00:04] TITLE: [Journal of Medical Internet Research] Public Perception of Artificial Intelligence in Medical Care: Content Analysis of Social Media | DOI: 10.2196/16649
+[2026-02-10 00:04] TITLE: [Journal of Medical Internet Research] Artificial Intelligence–Based Ethical Hacking for Health Information Systems: Simulation Study | DOI: 10.2196/41748
+[2026-02-10 00:04] TITLE: [SSRN Electronic Journal] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.2139/ssrn.5085878
+[2026-02-10 00:04] TITLE: [Asian Journal of Research in Computer Science] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.9734/ajrcos/2025/v18i1549
+[2026-02-10 00:04] TITLE: [Philosophy &amp; Technology] Baudrillard and the Dead Internet Theory. Revisiting Baudrillard’s (dis)trust in Artificial Intelligence | DOI: 10.1007/s13347-025-00878-5
+[2026-02-10 00:04] TITLE: [Journal of Medical Internet Research] Gender Bias When Using Artificial Intelligence to Assess Anorexia Nervosa on Social Media: Data-Driven Study | DOI: 10.2196/45184
+[2026-02-10 00:05] TITLE: [Galactica Media: Journal of Media Studies] Artificial Intelligence and Internet Journalism: Presentation of Artificial Intelligence News to Internet and X (Twitter) Users in Türkiye | DOI: 10.46539/gmd.v7i3.578
+[2026-02-10 00:05] TITLE: [Information] Speaking like Humans, Spreading like Machines: A Study on Opinion Manipulation by Artificial-Intelligence-Generated Content Driving the Internet Water Army on Social Media | DOI: 10.3390/info16100850
+[2026-02-10 00:05] TITLE: [Philosophy &amp; Technology] Baudrillard and the Dead Internet Theory. Revisiting Baudrillard’s (dis)trust in Artificial Intelligence | DOI: 10.1007/s13347-025-00878-5
+[2026-02-10 00:05] TITLE: [Journal of Medical Internet Research] Gender Bias When Using Artificial Intelligence to Assess Anorexia Nervosa on Social Media: Data-Driven Study | DOI: 10.2196/45184
+[2026-02-10 00:05] TITLE: [Journal of Medical Internet Research] Public Perception of Artificial Intelligence in Medical Care: Content Analysis of Social Media | DOI: 10.2196/16649
+[2026-02-10 00:05] TITLE: [Journal of Medical Internet Research] Artificial Intelligence–Based Ethical Hacking for Health Information Systems: Simulation Study | DOI: 10.2196/41748
+[2026-02-10 00:05] TITLE: [Future Internet] Emotional Sequencing as a Marker of Manipulation in Social Media Disinformation | DOI: 10.3390/fi17120546
+[2026-02-10 00:05] TITLE: [Asian Journal of Research in Computer Science] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.9734/ajrcos/2025/v18i1549
+[2026-02-10 00:05] TITLE: [SSRN Electronic Journal] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.2139/ssrn.5085878
+[2026-02-10 00:06] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] INTERNET AND SOCIAL MEDIA AS A DEMOCRATIC THREAT OR PARTICIPATION TOOL | DOI: 10.17361/uhive.20161016618
+[2026-02-10 00:06] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Artificial Intelligence in Sustainable Fashion Marketing: Transforming the Supply Chain Landscape | DOI: 10.56614/eiprmj.v8i2y19.363
+[2026-02-10 00:06] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] POP POLYVOCALITY AND INTERNET MEMES: AS A REFLECTION OF SOCIO-POLITICAL DISCOURSE OF TURKISH YOUTH IN SOCIAL MEDIA | DOI: 10.17361/uhive.20161016628
+[2026-02-10 00:06] TITLE: [International Journal of Science and Research (IJSR)] Leveraging Artificial Intelligence and Machine Learning to Profile Internet Users through Media Content | DOI: 10.21275/sr231116140241
+[2026-02-10 00:06] TITLE: [Galactica Media: Journal of Media Studies] Artificial Intelligence and Internet Journalism: Presentation of Artificial Intelligence News to Internet and X (Twitter) Users in Türkiye | DOI: 10.46539/gmd.v7i3.578
+[2026-02-10 00:08] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] POP POLYVOCALITY AND INTERNET MEMES: AS A REFLECTION OF SOCIO-POLITICAL DISCOURSE OF TURKISH YOUTH IN SOCIAL MEDIA | DOI: 10.17361/uhive.20161016628
+[2026-02-10 00:08] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Artificial Intelligence in Sustainable Fashion Marketing: Transforming the Supply Chain Landscape | DOI: 10.56614/eiprmj.v8i2y19.363
+[2026-02-10 00:08] TITLE: [Galactica Media: Journal of Media Studies] Artificial Intelligence and Internet Journalism: Presentation of Artificial Intelligence News to Internet and X (Twitter) Users in Türkiye | DOI: 10.46539/gmd.v7i3.578
+[2026-02-10 00:08] TITLE: [Information] Speaking like Humans, Spreading like Machines: A Study on Opinion Manipulation by Artificial-Intelligence-Generated Content Driving the Internet Water Army on Social Media | DOI: 10.3390/info16100850
+[2026-02-10 00:08] TITLE: [Future Internet] Emotional Sequencing as a Marker of Manipulation in Social Media Disinformation | DOI: 10.3390/fi17120546
+[2026-02-10 00:08] TITLE: [International Journal of Science and Research (IJSR)] Leveraging Artificial Intelligence and Machine Learning to Profile Internet Users through Media Content | DOI: 10.21275/sr231116140241
+[2026-02-10 00:08] TITLE: [Journal of Medical Internet Research] Public Perception of Artificial Intelligence in Medical Care: Content Analysis of Social Media | DOI: 10.2196/16649
+[2026-02-10 00:08] TITLE: [INTERNATIONAL PEER-REVIEWED JOURNAL OF COMMUNICATION AND HUMANITIES RESEARCHES] INTERNET AND SOCIAL MEDIA AS A DEMOCRATIC THREAT OR PARTICIPATION TOOL | DOI: 10.17361/uhive.20161016618
+[2026-02-10 00:08] TITLE: [Asian Journal of Research in Computer Science] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.9734/ajrcos/2025/v18i1549
+[2026-02-10 00:08] TITLE: [Journal of Medical Internet Research] Artificial Intelligence–Based Ethical Hacking for Health Information Systems: Simulation Study | DOI: 10.2196/41748
+[2026-02-10 00:08] TITLE: [Journal of Social Change] Changing Social Learning Theory Through Reliance on the Internet of Things and Artificial Intelligence | DOI: 10.5590/josc.2020.12.1.08
+[2026-02-10 00:08] TITLE: [Journal of Medical Internet Research] Gender Bias When Using Artificial Intelligence to Assess Anorexia Nervosa on Social Media: Data-Driven Study | DOI: 10.2196/45184
+[2026-02-10 00:08] TITLE: [SSRN Electronic Journal] The Dead Internet Theory: A Survey on Artificial Interactions and the Future of Social Media | DOI: 10.2139/ssrn.5085878
+[2026-02-10 00:08] TITLE: [Philosophy &amp; Technology] Baudrillard and the Dead Internet Theory. Revisiting Baudrillard’s (dis)trust in Artificial Intelligence | DOI: 10.1007/s13347-025-00878-5
+[2026-02-10 00:11] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Artificial Intelligence in Sustainable Fashion Marketing: Transforming the Supply Chain Landscape | DOI: 10.56614/eiprmj.v8i2y19.363
+[2026-02-10 00:11] TITLE: [Educational Administration: Theory and Practice] The Role of Artificial Intelligence in Enhancing Emotional Intelligence for Strategic Decision-Making: A Study Across Academic Institutions in Punjab | DOI: 10.53555/kuey.v29i3.9605
+[2026-02-10 00:11] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Digital Transformation 4.0: Integration of Artificial Intelligence &amp; Metaverse in Marketing | DOI: 10.56614/eiprmj.v12i1y23.248
+[2026-02-10 00:11] TITLE: [Peer Community in Psychology] Review of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1/Reviewer#1 | DOI: 10.24072/pci.psych.100010.rev11
+[2026-02-10 00:11] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Revolutionizing the Digital Landscape: Exploring the Integration of Artificial Intelligence in Modern Marketing Strategies | DOI: 10.56614/eiprmj.v5i2y16.322
+[2026-02-10 00:11] TITLE: [Peer Community in Psychology] Decision Revise: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1 | DOI: 10.24072/pci.psych.100010.d1
+[2026-02-10 00:11] TITLE: [Peer Community in Psychology] Recommendation of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#3 | DOI: 10.24072/pci.psych.100010
+[2026-02-10 00:11] TITLE: [Cyber Security: A Peer-Reviewed Journal] The artificial intelligence security zugzwang | DOI: 10.69554/bxic8308
+[2026-02-10 00:11] TITLE: [Transactions on Machine Learning and Artificial Intelligence] Dialectical Logic K-Model: Some Applications by Fuzzy-Probability Theory, Cause -Effect Analysis, Chaos Dynamics and Optimization Theory | DOI: 10.14738/tmlai.66.5862
+[2026-02-10 00:11] TITLE: [Artificial Intelligence] Exploration-exploitation in multi-agent learning: Catastrophe theory meets game theory | DOI: 10.1016/j.artint.2021.103653
+[2026-02-10 00:11] TITLE: [Peer Community in Psychology] Review of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1/Reviewer#2 | DOI: 10.24072/pci.psych.100010.rev12
+[2026-02-10 00:11] TITLE: [Peer Community in Psychology] Decision Revise: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#2 | DOI: 10.24072/pci.psych.100010.d2
+[2026-02-10 00:11] TITLE: [Philosophy &amp; Technology] Baudrillard and the Dead Internet Theory. Revisiting Baudrillard’s (dis)trust in Artificial Intelligence | DOI: 10.1007/s13347-025-00878-5
+[2026-02-10 00:11] TITLE: [TECHNO REVIEW. International Technology, Science and Society Review /Revista Internacional De Tecnología, Ciencia Y Sociedad] Theory of Mind: From Artificial Intelligence to Hybrid Intelligence | DOI: 10.37467/gka-revtechno.v9.2816
+[2026-02-10 00:11] TITLE: [Engineering Applications of Artificial Intelligence] Common LISP modules: Artificial intelligence in the area of neural networks and chaos theory | DOI: 10.1016/0952-1976(93)90071-5
+[2026-02-10 00:12] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Digital Transformation 4.0: Integration of Artificial Intelligence &amp; Metaverse in Marketing | DOI: 10.56614/eiprmj.v12i1y23.248
+[2026-02-10 00:12] TITLE: [Cyber Security: A Peer-Reviewed Journal] The artificial intelligence security zugzwang | DOI: 10.69554/bxic8308
+[2026-02-10 13:53] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Revolutionizing the Digital Landscape: Exploring the Integration of Artificial Intelligence in Modern Marketing Strategies | DOI: 10.56614/eiprmj.v5i2y16.322
+[2026-02-10 13:53] TITLE: [Educational Administration: Theory and Practice] The Role of Artificial Intelligence in Enhancing Emotional Intelligence for Strategic Decision-Making: A Study Across Academic Institutions in Punjab | DOI: 10.53555/kuey.v29i3.9605
+[2026-02-10 13:53] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Digital Transformation 4.0: Integration of Artificial Intelligence &amp; Metaverse in Marketing | DOI: 10.56614/eiprmj.v12i1y23.248
+[2026-02-10 13:53] TITLE: [Eduzone : international peer reviewed/refereed academic multidisciplinary journal] Artificial Intelligence in Sustainable Fashion Marketing: Transforming the Supply Chain Landscape | DOI: 10.56614/eiprmj.v8i2y19.363
+[2026-02-10 13:53] TITLE: [Peer Community in Psychology] Review of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1/Reviewer#1 | DOI: 10.24072/pci.psych.100010.rev11
+[2026-02-10 13:53] TITLE: [Cyber Security: A Peer-Reviewed Journal] The artificial intelligence security zugzwang | DOI: 10.69554/bxic8308
+[2026-02-10 13:53] TITLE: [Philosophy &amp; Technology] Baudrillard and the Dead Internet Theory. Revisiting Baudrillard’s (dis)trust in Artificial Intelligence | DOI: 10.1007/s13347-025-00878-5
+[2026-02-10 13:53] TITLE: [Peer Community in Psychology] Decision Revise: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#2 | DOI: 10.24072/pci.psych.100010.d2
+[2026-02-10 13:53] TITLE: [Cyber Security: A Peer-Reviewed Journal] Security audits on artificial intelligence systems | DOI: 10.69554/dfce5797
+[2026-02-10 13:53] TITLE: [Peer Community in Psychology] Review of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1/Reviewer#2 | DOI: 10.24072/pci.psych.100010.rev12
+[2026-02-10 13:53] TITLE: [TECHNO REVIEW. International Technology, Science and Society Review /Revista Internacional De Tecnología, Ciencia Y Sociedad] Theory of Mind: From Artificial Intelligence to Hybrid Intelligence | DOI: 10.37467/gka-revtechno.v9.2816
+[2026-02-10 13:53] TITLE: [Engineering Applications of Artificial Intelligence] Common LISP modules: Artificial intelligence in the area of neural networks and chaos theory | DOI: 10.1016/0952-1976(93)90071-5
+[2026-02-10 13:53] TITLE: [Peer Community in Psychology] Recommendation of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#3 | DOI: 10.24072/pci.psych.100010
+[2026-02-10 13:53] TITLE: [Peer Community in Psychology] Decision Revise: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1 | DOI: 10.24072/pci.psych.100010.d1
+[2026-02-10 13:53] TITLE: [Artificial Intelligence] Exploration-exploitation in multi-agent learning: Catastrophe theory meets game theory | DOI: 10.1016/j.artint.2021.103653

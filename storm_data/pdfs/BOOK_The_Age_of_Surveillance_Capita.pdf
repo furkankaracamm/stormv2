@@ -1,0 +1,423 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html class="gl-system ui-neutral with-top-bar with-header application-chrome page-with-panels with-gl-container-queries " lang="en">
+<head prefix="og: http://ogp.me/ns#">
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Community projects (#269) · Issues · AnnaArchivist / annas-archive · GitLab</title>
+<script>
+//<![CDATA[
+window.gon={};gon.math_rendering_limits_enabled=true;gon.features={"allowIframesInMarkdown":false,"preserveMarkdown":false,"notificationsTodosButtons":false,"workItemPlanningView":false,"glqlLoadOnClick":false,"hideIncidentManagementFeatures":false,"epicWidgetEditConfirmation":false};
+//]]>
+</script>
+
+<script>
+//<![CDATA[
+const root = document.documentElement;
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  root.classList.add('gl-dark');
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  if (e.matches) {
+    root.classList.add('gl-dark');
+  } else {
+    root.classList.remove('gl-dark');
+  }
+});
+
+//]]>
+</script>
+<script>
+//<![CDATA[
+var gl = window.gl || {};
+gl.startup_calls = {"/AnnaArchivist/annas-archive/-/issues/269/related_branches":{},"/AnnaArchivist/annas-archive/-/issues/269/discussions.json?per_page=20":{},"/AnnaArchivist/annas-archive/-/issues/269.json?serializer=sidebar_extras":{}};
+gl.startup_graphql_calls = null;
+
+if (gl.startup_calls && window.fetch) {
+  Object.keys(gl.startup_calls).forEach(apiCall => {
+   gl.startup_calls[apiCall] = {
+      fetchCall: fetch(apiCall, {
+        // Emulate XHR for Rails AJAX request checks
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        // fetch won’t send cookies in older browsers, unless you set the credentials init option.
+        // We set to `same-origin` which is default value in modern browsers.
+        // See https://github.com/whatwg/fetch/pull/585 for more information.
+        credentials: 'same-origin'
+      })
+    };
+  });
+}
+if (gl.startup_graphql_calls && window.fetch) {
+  const headers = {"X-CSRF-Token":"K4EOPNAu1W5ZEl0H5RFYLmgj6HILTuyKt0XpvOax3lbPrsA3pfeYv4bvMw6DjP5HZOMmZaV445NvwS5faocFfA","x-gitlab-feature-category":"team_planning"};
+  const url = `https://software.annas-archive.li/api/graphql`
+
+  const opts = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    }
+  };
+
+  gl.startup_graphql_calls = gl.startup_graphql_calls.map(call => ({
+    ...call,
+    fetchCall: fetch(url, {
+      ...opts,
+      credentials: 'same-origin',
+      body: JSON.stringify(call)
+    })
+  }))
+}
+
+
+//]]>
+</script>
+
+
+
+<meta content="light dark" name="color-scheme">
+<link rel="stylesheet" href="/assets/application-cf4aa50cbc2dc9eb0c198d2424a0669f5788a487e0b84edbbd5535eb9d362c7d.css" media="(prefers-color-scheme: light)" />
+<link rel="stylesheet" href="/assets/application_dark-44c9f34edd351e40630e3fdba7690c2b9a93f99d350c65c8e84027b01a3dc1b8.css" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" href="/assets/page_bundles/design_management-714c36aa7869317006d0fdf3fa26fe925dcbcda6a0c71a93a3e54f3fc27ca849.css" /><link rel="stylesheet" href="/assets/page_bundles/incidents-70919d2acabcc4d627e9cd7adf1754065bca7e5c859a5be0b6925c8298646821.css" /><link rel="stylesheet" href="/assets/page_bundles/issuable-a1426ec32621b16dfde0bb759644dde9c2420a266b82578555e8cf4478d95dca.css" /><link rel="stylesheet" href="/assets/page_bundles/notes_shared-8f7a9513332533cc4a53b3be3d16e69570e82bc87b3f8913578eaeb0dce57e21.css" /><link rel="stylesheet" href="/assets/page_bundles/issues_show-772d033f6edeb2b0194d5d8e7a458874b0c6ccd961b76643df7be26ef78eccc2.css" /><link rel="stylesheet" href="/assets/page_bundles/work_items-af321897c3b1ae7c1f6f0cb993681211b837df7ec8e5ff59e3795fd08ab83a13.css" /><link rel="stylesheet" href="/assets/page_bundles/labels-b23cc06813aa6fbbc608e40531a9a2c605d4b464b1a2b1bd22360ba37986127f.css" /><link rel="stylesheet" href="/assets/page_bundles/commit_description-9e7efe20f0cef17d0606edabfad0418e9eb224aaeaa2dae32c817060fa60abcc.css" />
+<link rel="stylesheet" href="/assets/tailwind_cqs-803bc25d974cea7d6b5a09eb2f7afbe7cbe03c98a0b79af533c664c4b3d075aa.css" />
+
+
+<link rel="stylesheet" href="/assets/fonts-deb7ad1d55ca77c0172d8538d53442af63604ff490c74acc2859db295c125bdb.css" />
+<link rel="stylesheet" href="/assets/highlight/themes/white-c47e38e4a3eafd97b389c0f8eec06dce295f311cdc1c9e55073ea9406b8fe5b0.css" media="(prefers-color-scheme: light)" />
+<link rel="stylesheet" href="/assets/highlight/themes/dark-8796b0549a7cd8fd6d2646619fa5840db4505d7031a76d5441a3cee1d12390d2.css" media="(prefers-color-scheme: dark)" />
+
+<script src="/assets/webpack/runtime.9f781f18.bundle.js" defer="defer"></script>
+<script src="/assets/webpack/main.196a6386.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/tracker.4ac2efa2.chunk.js" defer="defer"></script>
+<script>
+//<![CDATA[
+window.snowplowOptions = {"namespace":"gl","hostname":"software.annas-archive.li:443","postPath":"/-/collect_events","forceSecureTracker":true,"appId":"gitlab_sm"};
+gl = window.gl || {};
+gl.snowplowStandardContext = {"schema":"iglu:com.gitlab/gitlab_standard/jsonschema/1-1-7","data":{"environment":"self-managed","source":"gitlab-rails","correlation_id":"01KH20BR1FMZMDA1HGR3KN4YHN","extra":{},"user_id":null,"global_user_id":null,"user_type":null,"is_gitlab_team_member":null,"namespace_id":1,"ultimate_parent_namespace_id":1,"project_id":2,"feature_enabled_by_namespace_ids":null,"realm":"self-managed","deployment_type":"self-managed","context_generated_at":"2026-02-09T20:09:21.982Z"}};
+gl.snowplowPseudonymizedPageUrl = "https://software.annas-archive.li/namespace1/project2/-/issues/269";
+gl.maskedDefaultReferrerUrl = null;
+gl.ga4MeasurementId = 'G-ENFH3X7M5Y';
+gl.duoEvents = [];
+gl.onlySendDuoEvents = true;
+
+
+//]]>
+</script>
+<link rel="preload" href="/assets/application-cf4aa50cbc2dc9eb0c198d2424a0669f5788a487e0b84edbbd5535eb9d362c7d.css" as="style" type="text/css">
+<link rel="preload" href="/assets/highlight/themes/white-c47e38e4a3eafd97b389c0f8eec06dce295f311cdc1c9e55073ea9406b8fe5b0.css" as="style" type="text/css">
+
+
+
+
+<script src="/assets/webpack/commons-pages.groups.new-pages.import.gitlab_projects.new-pages.import.manifest.new-pages.projects.n-44c6c18e.606004de.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.search.show-super_sidebar.dcb4ef4b.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/super_sidebar.e4379d76.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/commons-pages.projects-pages.projects.activity-pages.projects.alert_management.details-pages.project-8c2226c2.e789653f.chunk.js" defer="defer"></script>
+<script src="/assets/webpack/pages.projects.issues.show.33d50630.chunk.js" defer="defer"></script>
+
+<meta content="object" property="og:type">
+<meta content="GitLab" property="og:site_name">
+<meta content="Community projects (#269) · Issues · AnnaArchivist / annas-archive · GitLab" property="og:title">
+<meta content="Community projects not mentioned elsewhere. Please comment with what you made!" property="og:description">
+<meta content="https://software.annas-archive.li/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="og:image">
+<meta content="64" property="og:image:width">
+<meta content="64" property="og:image:height">
+<meta content="https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/269" property="og:url">
+<meta content="summary" property="twitter:card">
+<meta content="Community projects (#269) · Issues · AnnaArchivist / annas-archive · GitLab" property="twitter:title">
+<meta content="Community projects not mentioned elsewhere. Please comment with what you made!" property="twitter:description">
+<meta content="https://software.annas-archive.li/assets/twitter_card-570ddb06edf56a2312253c5872489847a0f385112ddbcd71ccfa1570febab5d2.jpg" property="twitter:image">
+<meta property="twitter:label1" content="Author"><meta property="twitter:data1" content="AnnaArchivist">
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="ncDbbV4G2VudOt99i51nc3jKiBqmmR3bkqhD1cilmgB57xVmK9-UikLHsXTtAMEadApGDQivEsJKLIQ2RJNBKg" />
+<meta name="csp-nonce" />
+<meta name="action-cable-url" content="/-/cable" />
+<link href="/-/manifest.json" rel="manifest">
+<link rel="icon" type="image/png" href="/assets/favicon-72a2cad5025aa931d6ea56c3201d1f18e68a8cd39788c7c80d5b2b82aa5143ef.png" id="favicon" data-original-href="/assets/favicon-72a2cad5025aa931d6ea56c3201d1f18e68a8cd39788c7c80d5b2b82aa5143ef.png" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/apple-touch-icon-b049d4bc0dd9626f31db825d61880737befc7835982586d015bded10b4435460.png" />
+<link href="/search/opensearch.xml" rel="search" title="Search GitLab" type="application/opensearchdescription+xml">
+
+
+
+
+<meta content="Community projects not mentioned elsewhere. Please comment with what you made!" name="description">
+<meta content="#F1F0F6" media="(prefers-color-scheme: light)" name="theme-color">
+<meta content="#232128" media="(prefers-color-scheme: dark)" name="theme-color">
+</head>
+
+<body class="tab-width-8 gl-browser-chrome gl-platform-windows " data-namespace-id="1" data-page="projects:issues:show" data-page-type-id="269" data-project="annas-archive" data-project-full-path="AnnaArchivist/annas-archive" data-project-id="2" data-project-studio-enabled="true">
+<div id="js-tooltips-container"></div>
+<script>
+//<![CDATA[
+gl = window.gl || {};
+gl.GfmAutoComplete = gl.GfmAutoComplete || {};
+gl.GfmAutoComplete.dataSources = {"members":"/AnnaArchivist/annas-archive/-/autocomplete_sources/members?type=Issue\u0026type_id=269","issues":"/AnnaArchivist/annas-archive/-/autocomplete_sources/issues","mergeRequests":"/AnnaArchivist/annas-archive/-/autocomplete_sources/merge_requests","labels":"/AnnaArchivist/annas-archive/-/autocomplete_sources/labels?type=Issue\u0026type_id=269","milestones":"/AnnaArchivist/annas-archive/-/autocomplete_sources/milestones","commands":"/AnnaArchivist/annas-archive/-/autocomplete_sources/commands?type=Issue\u0026type_id=269","snippets":"/AnnaArchivist/annas-archive/-/autocomplete_sources/snippets","contacts":"/AnnaArchivist/annas-archive/-/autocomplete_sources/contacts?type=Issue\u0026type_id=269"};
+
+
+//]]>
+</script>
+<script>
+//<![CDATA[
+gl = window.gl || {};
+gl.client = {"isChrome":true,"isWindows":true};
+
+
+//]]>
+</script>
+
+
+<header class="super-topbar js-super-topbar"></header>
+<div class="layout-page js-page-layout page-gutter  page-with-super-sidebar">
+<script>
+//<![CDATA[
+const outer = document.createElement('div');
+outer.style.visibility = 'hidden';
+outer.style.overflow = 'scroll';
+document.body.appendChild(outer);
+const inner = document.createElement('div');
+outer.appendChild(inner);
+const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+outer.parentNode.removeChild(outer);
+document.documentElement.style.setProperty('--scrollbar-width', `${scrollbarWidth}px`);
+
+//]]>
+</script><aside class="js-super-sidebar super-sidebar super-sidebar-loading" data-command-palette="{&quot;project_files_url&quot;:&quot;/AnnaArchivist/annas-archive/-/files/main?format=json&quot;,&quot;project_blob_url&quot;:&quot;/AnnaArchivist/annas-archive/-/blob/main&quot;}" data-force-desktop-expanded-sidebar="" data-is-saas="false" data-root-path="/" data-sidebar="{&quot;is_logged_in&quot;:false,&quot;compare_plans_url&quot;:&quot;https://about.gitlab.com/pricing&quot;,&quot;context_switcher_links&quot;:[{&quot;title&quot;:&quot;Explore&quot;,&quot;link&quot;:&quot;/explore&quot;,&quot;icon&quot;:&quot;compass&quot;}],&quot;current_menu_items&quot;:[{&quot;id&quot;:&quot;project_overview&quot;,&quot;title&quot;:&quot;annas-archive&quot;,&quot;entity_id&quot;:2,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive&quot;,&quot;link_classes&quot;:&quot;shortcuts-project&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;manage_menu&quot;,&quot;title&quot;:&quot;Manage&quot;,&quot;icon&quot;:&quot;users&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/activity&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;activity&quot;,&quot;title&quot;:&quot;Activity&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/activity&quot;,&quot;link_classes&quot;:&quot;shortcuts-project-activity&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;members&quot;,&quot;title&quot;:&quot;Members&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/project_members&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;labels&quot;,&quot;title&quot;:&quot;Labels&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/labels&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;plan_menu&quot;,&quot;title&quot;:&quot;Plan&quot;,&quot;icon&quot;:&quot;planning&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/issues&quot;,&quot;is_active&quot;:true,&quot;items&quot;:[{&quot;id&quot;:&quot;project_issue_list&quot;,&quot;title&quot;:&quot;Issues&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/issues&quot;,&quot;link_classes&quot;:&quot;shortcuts-issues has-sub-items&quot;,&quot;pill_count_field&quot;:&quot;openIssuesCount&quot;,&quot;pill_count_dynamic&quot;:false,&quot;is_active&quot;:true},{&quot;id&quot;:&quot;boards&quot;,&quot;title&quot;:&quot;Issue boards&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/boards&quot;,&quot;link_classes&quot;:&quot;shortcuts-issue-boards&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;milestones&quot;,&quot;title&quot;:&quot;Milestones&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/milestones&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;code_menu&quot;,&quot;title&quot;:&quot;Code&quot;,&quot;icon&quot;:&quot;code&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/merge_requests&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;project_merge_request_list&quot;,&quot;title&quot;:&quot;Merge requests&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/merge_requests&quot;,&quot;link_classes&quot;:&quot;shortcuts-merge_requests&quot;,&quot;pill_count_field&quot;:&quot;openMergeRequestsCount&quot;,&quot;pill_count_dynamic&quot;:false,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;files&quot;,&quot;title&quot;:&quot;Repository&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/tree/main&quot;,&quot;link_classes&quot;:&quot;shortcuts-tree&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;branches&quot;,&quot;title&quot;:&quot;Branches&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/branches&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;commits&quot;,&quot;title&quot;:&quot;Commits&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/commits/main?ref_type=heads&quot;,&quot;link_classes&quot;:&quot;shortcuts-commits&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;tags&quot;,&quot;title&quot;:&quot;Tags&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/tags&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;graphs&quot;,&quot;title&quot;:&quot;Repository graph&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/network/main?ref_type=heads&quot;,&quot;link_classes&quot;:&quot;shortcuts-network&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;compare&quot;,&quot;title&quot;:&quot;Compare revisions&quot;,&quot;link&quot;:&quot;/AnnaArchivist/annas-archive/-/compare?from=main\u0026to=main&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false}],&quot;current_context_header&quot;:&quot;Project&quot;,&quot;university_path&quot;:&quot;https://university.gitlab.com&quot;,&quot;support_path&quot;:&quot;https://about.gitlab.com/get-help/&quot;,&quot;docs_path&quot;:&quot;/help/docs&quot;,&quot;display_whats_new&quot;:false,&quot;show_version_check&quot;:false,&quot;search&quot;:{&quot;search_path&quot;:&quot;/search&quot;,&quot;issues_path&quot;:&quot;/dashboard/issues&quot;,&quot;mr_path&quot;:&quot;/dashboard/merge_requests&quot;,&quot;autocomplete_path&quot;:&quot;/search/autocomplete&quot;,&quot;settings_path&quot;:&quot;/search/settings&quot;,&quot;search_context&quot;:{&quot;project&quot;:{&quot;id&quot;:2,&quot;name&quot;:&quot;annas-archive&quot;},&quot;project_metadata&quot;:{&quot;mr_path&quot;:&quot;/AnnaArchivist/annas-archive/-/merge_requests&quot;,&quot;issues_path&quot;:&quot;/AnnaArchivist/annas-archive/-/issues&quot;},&quot;code_search&quot;:false,&quot;scope&quot;:&quot;issues&quot;,&quot;for_snippets&quot;:null}},&quot;panel_type&quot;:&quot;project&quot;,&quot;shortcut_links&quot;:[{&quot;title&quot;:&quot;Snippets&quot;,&quot;href&quot;:&quot;/explore/snippets&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-snippets&quot;},{&quot;title&quot;:&quot;Groups&quot;,&quot;href&quot;:&quot;/explore/groups&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-groups&quot;},{&quot;title&quot;:&quot;Projects&quot;,&quot;href&quot;:&quot;/explore/projects/starred&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-projects&quot;}],&quot;terms&quot;:null,&quot;sign_in_visible&quot;:&quot;true&quot;,&quot;allow_signup&quot;:&quot;true&quot;,&quot;new_user_registration_path&quot;:&quot;/users/sign_up&quot;,&quot;sign_in_path&quot;:&quot;/users/sign_in?redirect_to_referer=yes&quot;}"></aside>
+
+
+<div class="panels-container gl-flex gl-gap-3">
+<div class="content-panels gl-flex-1 gl-w-full gl-flex gl-gap-3 gl-relative js-content-panels gl-@container/content-panels">
+<div class="js-static-panel static-panel content-wrapper gl-relative paneled-view gl-flex-1 gl-overflow-y-auto gl-bg-default" id="static-panel-portal">
+<div class="panel-header">
+<div class="broadcast-wrapper">
+
+<div class="gl-broadcast-message banner js-broadcast-notification-2 light-blue" data-broadcast-banner data-testid="banner-broadcast-message" role="alert">
+<div class="gl-broadcast-message-content">
+<div class="gl-broadcast-message-icon">
+<svg class="s16" data-testid="bullhorn-icon"><use href="/assets/icons-dafe78f1f5f3f39844d40e6211b4b6b2b89533b96324c26e6ca12cfd6cf1b0ca.svg#bullhorn"></use></svg>
+</div>
+<div class="gl-broadcast-message-text">
+<h2 class="gl-sr-only">Admin message</h2>
+<p>Join our chat for devs &amp; translators on Matrix: #annas:archivecommunication.org. --- SIGNUP ISSUES FOR MICROSOFT EMAILS(outlook, hotmail, live): try a different address.</p>
+</div>
+</div>
+<button class="gl-button btn btn-icon btn-sm btn-default btn-default-tertiary gl-broadcast-message-dismiss js-dismiss-current-broadcast-notification" aria-label="Close" data-id="2" data-expire-date="2099-03-12T02:00:00Z" data-cookie-key="hide_broadcast_message_2" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="close-icon"><use href="/assets/icons-dafe78f1f5f3f39844d40e6211b4b6b2b89533b96324c26e6ca12cfd6cf1b0ca.svg#close"></use></svg>
+
+</button>
+</div>
+
+
+
+
+</div>
+<div class="top-bar-fixed container-fluid gl-rounded-t-lg gl-sticky gl-top-0 gl-left-0 gl-mx-0 gl-w-full" data-testid="top-bar">
+<div class="top-bar-container gl-flex gl-items-center gl-gap-2">
+<div class="gl-grow gl-basis-0 gl-flex gl-items-center gl-justify-start gl-gap-3">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AnnaArchivist","item":"https://software.annas-archive.li/AnnaArchivist"},{"@type":"ListItem","position":2,"name":"annas-archive","item":"https://software.annas-archive.li/AnnaArchivist/annas-archive"},{"@type":"ListItem","position":3,"name":"Issues","item":"https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues"},{"@type":"ListItem","position":4,"name":"#269","item":"https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/269"}]}
+
+
+</script>
+<div data-testid="breadcrumb-links" id="js-vue-page-breadcrumbs-wrapper">
+<div data-breadcrumbs-json="[{&quot;text&quot;:&quot;AnnaArchivist&quot;,&quot;href&quot;:&quot;/AnnaArchivist&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;annas-archive&quot;,&quot;href&quot;:&quot;/AnnaArchivist/annas-archive&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;Issues&quot;,&quot;href&quot;:&quot;/AnnaArchivist/annas-archive/-/issues&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;#269&quot;,&quot;href&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269&quot;,&quot;avatarPath&quot;:null}]" id="js-vue-page-breadcrumbs"></div>
+<div id="js-injected-page-breadcrumbs"></div>
+<div id="js-page-breadcrumbs-extra"></div>
+</div>
+
+
+<div id="js-work-item-feedback"></div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="panel-content">
+<div class="panel-content-inner js-static-panel-inner">
+<div class="alert-wrapper alert-wrapper-top-space gl-flex gl-flex-col gl-gap-3 container-fluid container-limited">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="container-fluid container-limited limit-container-width project-highlight-puc">
+<main class="content gl-@container/panel gl-pb-3" id="content-body" itemscope itemtype="http://schema.org/SoftwareSourceCode">
+<div id="js-drawer-container"></div>
+<div class="flash-container flash-container-page sticky" data-testid="flash-container">
+<div id="js-global-alerts"></div>
+</div>
+
+
+
+
+
+
+
+
+<div class="issue-details issuable-details js-issue-details">
+<div class="detail-page-description content-block js-detail-page-description gl-pt-3 gl-pb-0 gl-border-none">
+<div data-header-actions-data="{&quot;can_create_issue&quot;:&quot;true&quot;,&quot;can_create_incident&quot;:&quot;false&quot;,&quot;can_destroy_issue&quot;:&quot;false&quot;,&quot;can_reopen_issue&quot;:&quot;false&quot;,&quot;can_report_spam&quot;:&quot;&quot;,&quot;can_update_issue&quot;:&quot;false&quot;,&quot;is_issue_author&quot;:&quot;false&quot;,&quot;issue_path&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269&quot;,&quot;new_issue_path&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/new?add_related_issue=269&quot;,&quot;project_path&quot;:&quot;AnnaArchivist/annas-archive&quot;,&quot;report_abuse_path&quot;:&quot;/-/abuse_reports/add_category&quot;,&quot;reported_user_id&quot;:1,&quot;reported_from_url&quot;:&quot;https://software.annas-archive.li/AnnaArchivist/annas-archive/-/issues/269&quot;,&quot;submit_as_spam_path&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269/mark_as_spam&quot;,&quot;issuable_email_address&quot;:null}" data-initial="{&quot;endpoint&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269&quot;,&quot;updateEndpoint&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269.json&quot;,&quot;canUpdate&quot;:false,&quot;canDestroy&quot;:false,&quot;issuableRef&quot;:&quot;#269&quot;,&quot;imported&quot;:false,&quot;markdownPreviewPath&quot;:&quot;/AnnaArchivist/annas-archive/-/preview_markdown?target_id=269\u0026target_type=Issue&quot;,&quot;markdownDocsPath&quot;:&quot;/help/user/markdown.md&quot;,&quot;lockVersion&quot;:0,&quot;issuableTemplateNamesPath&quot;:&quot;/AnnaArchivist/annas-archive/description_templates/names/issue&quot;,&quot;initialTitleHtml&quot;:&quot;Community projects&quot;,&quot;initialTitleText&quot;:&quot;Community projects&quot;,&quot;initialDescriptionHtml&quot;:&quot;\u003cp data-sourcepos=\&quot;1:1-1:78\&quot; dir=\&quot;auto\&quot;\u003eCommunity projects not mentioned elsewhere. Please comment with what you made!\u003c/p\u003e&quot;,&quot;initialDescriptionText&quot;:&quot;Community projects not mentioned elsewhere. Please comment with what you made!&quot;,&quot;initialTaskCompletionStatus&quot;:{&quot;count&quot;:0,&quot;completed_count&quot;:0},&quot;canCreateIncident&quot;:false,&quot;fullPath&quot;:&quot;AnnaArchivist/annas-archive&quot;,&quot;iid&quot;:269,&quot;issuableId&quot;:72285,&quot;issueType&quot;:&quot;issue&quot;,&quot;isHidden&quot;:false,&quot;zoomMeetingUrl&quot;:null,&quot;authorId&quot;:1,&quot;authorName&quot;:&quot;AnnaArchivist&quot;,&quot;authorUsername&quot;:&quot;AnnaArchivist&quot;,&quot;authorWebUrl&quot;:&quot;/AnnaArchivist&quot;,&quot;createdAt&quot;:&quot;2025-03-13T22:35:16+00:00&quot;,&quot;isFirstContribution&quot;:false,&quot;serviceDeskReplyTo&quot;:null,&quot;registerPath&quot;:&quot;/users/sign_up?redirect_to_referer=yes&quot;,&quot;signInPath&quot;:&quot;/users/sign_in?redirect_to_referer=yes&quot;,&quot;projectPath&quot;:&quot;annas-archive&quot;,&quot;projectId&quot;:2,&quot;projectNamespace&quot;:&quot;AnnaArchivist&quot;}" id="js-issuable-app">
+<div class="title-container">
+<h1 class="gl-heading-1 !gl-m-0">Community projects</h1>
+</div>
+<div class="description">
+<div class="md"><p data-sourcepos="1:1-1:78" dir="auto">Community projects not mentioned elsewhere. Please comment with what you made!</p></div>
+</div>
+
+</div>
+<div class="js-issue-widgets">
+<div class="emoji-block emoji-block-sticky">
+<div class="row gl-m-0 gl-justify-between">
+<div class="js-noteable-awards">
+<div class="gl-flex gl-flex-wrap gl-justify-between gl-pt-3">
+<div data-can-award-emoji="false" data-path="/api/v4/projects/2/issues/269/award_emoji" data-show-default-award-emojis="true" id="js-vue-awards-block"></div>
+
+</div>
+
+</div>
+<div class="new-branch-col gl-font-size-0 gl-my-2">
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class="js-issue-widgets">
+
+<div class="js-work-item-links-root" data-full-path="AnnaArchivist/annas-archive" data-issuable-id="72285" data-issuable-iid="269" data-register-path="/users/sign_up?redirect_to_referer=yes" data-sign-in-path="/users/sign_in?redirect_to_referer=yes" data-wi-autocomplete-award-emojis-path="/-/autocomplete/award_emojis" data-wi-calendar-path="/AnnaArchivist/annas-archive/-/work_items.ics?due_date=next_month_and_previous_two_weeks&amp;id=269&amp;sort=closest_future_date" data-wi-can-admin-label="false" data-wi-can-bulk-update="false" data-wi-can-create-projects="false" data-wi-can-edit="false" data-wi-can-import-work-items="false" data-wi-can-read-crm-contact="false" data-wi-can-read-crm-organization="false" data-wi-default-branch="main" data-wi-export-csv-path="/AnnaArchivist/annas-archive/-/issues/export_csv" data-wi-full-path="AnnaArchivist/annas-archive" data-wi-has-projects="false" data-wi-is-issue-repositioning-disabled="false" data-wi-is-signed-in="false" data-wi-issues-list-path="/AnnaArchivist/annas-archive/-/issues" data-wi-labels-manage-path="/AnnaArchivist/annas-archive/-/labels" data-wi-max-attachment-size="100 MiB" data-wi-new-comment-template-paths="[{&quot;text&quot;:&quot;Your comment templates&quot;,&quot;href&quot;:&quot;/-/profile/comment_templates&quot;}]" data-wi-new-issue-path="/AnnaArchivist/annas-archive/-/issues/new" data-wi-new-project-path="/projects/new" data-wi-new-trial-path="https://customers.gitlab.com/trials/new?return_to=https%3A%2F%2Fsoftware.annas-archive.li%2Fadmin%2Fapplication_settings%2Fgeneral%23js-add-license-toggle" data-wi-project-import-jira-path="/AnnaArchivist/annas-archive/-/import/jira" data-wi-project-namespace-full-path="AnnaArchivist" data-wi-register-path="/users/sign_up?redirect_to_referer=yes" data-wi-releases-path="/AnnaArchivist/annas-archive/-/releases.json" data-wi-report-abuse-path="/-/abuse_reports/add_category" data-wi-rss-path="/AnnaArchivist/annas-archive/-/work_items.atom?id=269" data-wi-show-new-work-item="true" data-wi-sign-in-path="/users/sign_in?redirect_to_referer=yes" data-wi-time-tracking-limit-to-hours="false" data-wi-work-item-planning-view-enabled="false" data-wi-work-items-saved-views-enabled="false"></div>
+
+
+<div class="js-related-issues-root" data-can-add-related-issues="false" data-endpoint="/AnnaArchivist/annas-archive/-/issues/269/links" data-full-path="AnnaArchivist/annas-archive" data-has-issue-weights-feature="false" data-has-iterations-feature="false" data-help-path="/help/user/project/issues/related_issues.md" data-is-group="false" data-issuable-type="issue" data-show-categorized-issues="false" data-wi-autocomplete-award-emojis-path="/-/autocomplete/award_emojis" data-wi-calendar-path="/AnnaArchivist/annas-archive/-/work_items.ics?due_date=next_month_and_previous_two_weeks&amp;id=269&amp;sort=closest_future_date" data-wi-can-admin-label="false" data-wi-can-bulk-update="false" data-wi-can-create-projects="false" data-wi-can-edit="false" data-wi-can-import-work-items="false" data-wi-can-read-crm-contact="false" data-wi-can-read-crm-organization="false" data-wi-default-branch="main" data-wi-export-csv-path="/AnnaArchivist/annas-archive/-/issues/export_csv" data-wi-full-path="AnnaArchivist/annas-archive" data-wi-has-projects="false" data-wi-is-issue-repositioning-disabled="false" data-wi-is-signed-in="false" data-wi-issues-list-path="/AnnaArchivist/annas-archive/-/issues" data-wi-labels-manage-path="/AnnaArchivist/annas-archive/-/labels" data-wi-max-attachment-size="100 MiB" data-wi-new-comment-template-paths="[{&quot;text&quot;:&quot;Your comment templates&quot;,&quot;href&quot;:&quot;/-/profile/comment_templates&quot;}]" data-wi-new-issue-path="/AnnaArchivist/annas-archive/-/issues/new" data-wi-new-project-path="/projects/new" data-wi-new-trial-path="https://customers.gitlab.com/trials/new?return_to=https%3A%2F%2Fsoftware.annas-archive.li%2Fadmin%2Fapplication_settings%2Fgeneral%23js-add-license-toggle" data-wi-project-import-jira-path="/AnnaArchivist/annas-archive/-/import/jira" data-wi-project-namespace-full-path="AnnaArchivist" data-wi-register-path="/users/sign_up?redirect_to_referer=yes" data-wi-releases-path="/AnnaArchivist/annas-archive/-/releases.json" data-wi-report-abuse-path="/-/abuse_reports/add_category" data-wi-rss-path="/AnnaArchivist/annas-archive/-/work_items.atom?id=269" data-wi-show-new-work-item="true" data-wi-sign-in-path="/users/sign_in?redirect_to_referer=yes" data-wi-time-tracking-limit-to-hours="false" data-wi-work-item-planning-view-enabled="false" data-wi-work-items-saved-views-enabled="false"></div>
+
+<div data-has-closing-merge-request="false" data-iid="269" data-project-path="AnnaArchivist/annas-archive" id="js-related-merge-requests"></div>
+<div data-url="/AnnaArchivist/annas-archive/-/issues/269/related_branches" id="related-branches">
+</div>
+</div>
+<div class="js-issue-widgets">
+<section class="issuable-discussion js-vue-notes-event">
+<div data-can-add-timeline-events="false" data-current-user-data="null" data-new-comment-template-paths="[{&quot;text&quot;:&quot;Your comment templates&quot;,&quot;href&quot;:&quot;/-/profile/comment_templates&quot;}]" data-noteable-data="{&quot;id&quot;:72285,&quot;iid&quot;:269,&quot;description&quot;:&quot;Community projects not mentioned elsewhere. Please comment with what you made!&quot;,&quot;title&quot;:&quot;Community projects&quot;,&quot;time_estimate&quot;:0,&quot;total_time_spent&quot;:0,&quot;human_time_estimate&quot;:null,&quot;human_total_time_spent&quot;:null,&quot;state&quot;:&quot;opened&quot;,&quot;milestone_id&quot;:null,&quot;updated_by_id&quot;:null,&quot;created_at&quot;:&quot;2025-03-13T22:35:16Z&quot;,&quot;updated_at&quot;:&quot;2025-12-21T12:34:01Z&quot;,&quot;milestone&quot;:null,&quot;labels&quot;:[{&quot;id&quot;:12,&quot;title&quot;:&quot;Wiki page&quot;,&quot;color&quot;:&quot;#009966&quot;,&quot;description&quot;:&quot;Not an actual issue or ticket, but using this as a collaborative wiki-like page.&quot;,&quot;text_color&quot;:&quot;#FFFFFF&quot;,&quot;created_at&quot;:&quot;2024-09-19T17:37:40.929Z&quot;,&quot;updated_at&quot;:&quot;2024-09-19T17:38:17.951Z&quot;,&quot;group_id&quot;:null,&quot;project_id&quot;:2,&quot;template&quot;:false}],&quot;lock_version&quot;:0,&quot;author_id&quot;:1,&quot;confidential&quot;:false,&quot;discussion_locked&quot;:null,&quot;assignees&quot;:[],&quot;due_date&quot;:null,&quot;project_id&quot;:2,&quot;moved_to_id&quot;:null,&quot;duplicated_to_id&quot;:null,&quot;web_url&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269&quot;,&quot;current_user&quot;:{&quot;can_create_note&quot;:false,&quot;can_create_confidential_note&quot;:false,&quot;can_update&quot;:false,&quot;can_set_issue_metadata&quot;:false,&quot;can_award_emoji&quot;:false},&quot;create_note_path&quot;:&quot;/AnnaArchivist/annas-archive/notes?target_id=72285\u0026target_type=issue&quot;,&quot;preview_note_path&quot;:&quot;/AnnaArchivist/annas-archive/-/preview_markdown?target_id=269\u0026target_type=Issue&quot;,&quot;is_project_archived&quot;:false,&quot;issue_email_participants&quot;:[],&quot;type&quot;:&quot;ISSUE&quot;}" data-noteable-type="Issue" data-notes-data="{&quot;noteableType&quot;:&quot;issue&quot;,&quot;noteableId&quot;:72285,&quot;projectId&quot;:2,&quot;groupId&quot;:null,&quot;discussionsPath&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269/discussions.json&quot;,&quot;registerPath&quot;:&quot;/users/sign_up?redirect_to_referer=yes&quot;,&quot;newSessionPath&quot;:&quot;/users/sign_in?redirect_to_referer=yes&quot;,&quot;markdownDocsPath&quot;:&quot;/help/user/markdown.md&quot;,&quot;quickActionsDocsPath&quot;:&quot;/help/user/project/quick_actions.md&quot;,&quot;closePath&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269.json?issue%5Bstate_event%5D=close&quot;,&quot;reopenPath&quot;:&quot;/AnnaArchivist/annas-archive/-/issues/269.json?issue%5Bstate_event%5D=reopen&quot;,&quot;notesPath&quot;:&quot;/AnnaArchivist/annas-archive/noteable/issue/72285/notes&quot;,&quot;prerenderedNotesCount&quot;:10,&quot;lastFetchedAt&quot;:1770667761000000,&quot;notesFilter&quot;:null}" data-notes-filters="{&quot;Show all activity&quot;:0,&quot;Show comments only&quot;:1,&quot;Show history only&quot;:2}" data-report-abuse-path="/-/abuse_reports/add_category" data-show-timeline-view-toggle="false" data-target-type="issue" id="js-vue-notes"></div>
+</section>
+
+</div>
+</div>
+<aside aria-label="issue" aria-live="polite" class="right-sidebar js-right-sidebar js-issuable-sidebar right-sidebar-expanded" data-always-show-toggle data-auto-collapse data-issuable-type="issue">
+<div class="issuable-sidebar">
+<div class="issuable-sidebar-header">
+<button class="gl-button btn btn-md btn-default gutter-toggle gl-float-right js-sidebar-toggle has-tooltip !gl-border-0" type="button" aria-label="Toggle sidebar" title="Collapse sidebar" data-container="body" data-placement="left" data-boundary="viewport" type="button"><span class="gl-button-text">
+<span class="js-sidebar-toggle-container gl-button-text" data-is-expanded="true"><svg class="s16 js-sidebar-expand hidden" data-testid="chevron-double-lg-left-icon"><use href="/assets/icons-dafe78f1f5f3f39844d40e6211b4b6b2b89533b96324c26e6ca12cfd6cf1b0ca.svg#chevron-double-lg-left"></use></svg><svg class="s16 js-sidebar-collapse " data-testid="chevron-double-lg-right-icon"><use href="/assets/icons-dafe78f1f5f3f39844d40e6211b4b6b2b89533b96324c26e6ca12cfd6cf1b0ca.svg#chevron-double-lg-right"></use></svg></span>
+
+</span>
+
+</button></div>
+<form class="issuable-context-form inline-update js-issuable-update " action="/AnnaArchivist/annas-archive/-/issues/269.json" accept-charset="UTF-8" data-remote="true" method="post"><div class="block assignee gl-mt-3" data-testid="assignee-block-container">
+<div class="js-sidebar-assignees-root" data-field="issue" data-max-assignees="1">
+<div class="title hide-collapsed gl-flex gl-justify-between gl-items-center !gl-mb-0">
+<span class="gl-font-bold">Assignee</span>
+<span class="gl-spinner-container" role="status"><span aria-hidden class="gl-spinner gl-spinner-sm gl-spinner-dark !gl-align-text-bottom"></span><span class="gl-sr-only !gl-absolute">Loading</span>
+</span>
+</div>
+</div>
+
+</div>
+<div class="js-sidebar-labels-widget-root" data-allow-label-create="" data-allow-scoped-labels="" data-can-edit="" data-iid="269" data-issuable-type="issue" data-labels-fetch-path="/AnnaArchivist/annas-archive/-/labels.json?include_ancestor_groups=true" data-labels-manage-path="/AnnaArchivist/annas-archive/-/labels" data-project-issues-path="/AnnaArchivist/annas-archive/-/issues" data-project-path="AnnaArchivist/annas-archive" data-selected-labels="[{&quot;id&quot;:12,&quot;title&quot;:&quot;Wiki page&quot;,&quot;color&quot;:&quot;#009966&quot;,&quot;description&quot;:&quot;Not an actual issue or ticket, but using this as a collaborative wiki-like page.&quot;,&quot;text_color&quot;:&quot;#FFFFFF&quot;,&quot;created_at&quot;:&quot;2024-09-19T17:37:40.929Z&quot;,&quot;updated_at&quot;:&quot;2024-09-19T17:38:17.951Z&quot;,&quot;group_id&quot;:null,&quot;project_id&quot;:2,&quot;template&quot;:false}]"></div>
+<div class="block milestone" data-testid="sidebar-milestones">
+<div class="js-sidebar-milestone-widget-root" data-can-edit="" data-issue-iid="269" data-project-path="AnnaArchivist/annas-archive"></div>
+</div>
+
+<div class="js-sidebar-due-date-widget-root"></div>
+<div class="js-sidebar-time-tracking-root block">
+<!-- / Fallback while content is loading -->
+<div class="title hide-collapsed gl-flex gl-justify-between gl-items-center !gl-mb-0">
+<span class="gl-font-bold">Time tracking</span>
+<span class="gl-spinner-container" role="status"><span aria-hidden class="gl-spinner gl-spinner-sm gl-spinner-dark !gl-align-text-bottom"></span><span class="gl-sr-only !gl-absolute">Loading</span>
+</span>
+</div>
+</div>
+<script id="js-confidential-issue-data" type="application/json">{"is_confidential":false,"is_editable":null}</script>
+
+<div class="js-sidebar-participants-widget-root"></div>
+</form><script class="js-sidebar-options" type="application/json">{"endpoint":"/AnnaArchivist/annas-archive/-/issues/269.json?serializer=sidebar_extras","toggleSubscriptionEndpoint":"/AnnaArchivist/annas-archive/-/issues/269/toggle_subscription","moveIssueEndpoint":"/AnnaArchivist/annas-archive/-/issues/269/move","projectsAutocompleteEndpoint":"/-/autocomplete/projects?project_id=2","editable":"","currentUser":{},"rootPath":"/","fullPath":"AnnaArchivist/annas-archive","iid":269,"id":72285,"severity":"unknown","timeTrackingLimitToHours":false,"canCreateTimelogs":null,"createNoteEmail":null,"issuableType":"issue","directlyInviteMembers":"false"}</script>
+</div>
+</aside>
+
+
+
+</main>
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="js-dynamic-panel paneled-view contextual-panel gl-@container/panel !gl-absolute gl-shadow-lg @xl/content-panels:gl-w-1/2 @xl/content-panels:gl-shadow-none @xl/content-panels:!gl-relative" id="contextual-panel-portal"></div>
+</div>
+</div>
+
+</div>
+
+
+<script>
+//<![CDATA[
+if ('loading' in HTMLImageElement.prototype) {
+  document.querySelectorAll('img.lazy').forEach(img => {
+    img.loading = 'lazy';
+    let imgUrl = img.dataset.src;
+    // Only adding width + height for avatars for now
+    if (imgUrl.indexOf('/avatar/') > -1 && imgUrl.indexOf('?') === -1) {
+      const targetWidth = img.getAttribute('width') || img.width;
+      imgUrl += `?width=${targetWidth}`;
+    }
+    img.src = imgUrl;
+    img.removeAttribute('data-src');
+    img.classList.remove('lazy');
+    img.classList.add('js-lazy-loaded');
+    img.dataset.testid = 'js-lazy-loaded-content';
+  });
+}
+
+//]]>
+</script>
+<script>
+//<![CDATA[
+gl = window.gl || {};
+gl.experiments = {};
+
+
+//]]>
+</script>
+
+</body>
+</html>
+

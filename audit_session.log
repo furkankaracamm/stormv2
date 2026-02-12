@@ -1,0 +1,53 @@
+[2026-02-09 20:18:15.363104] STARTING LIVE AUDIT SESSION...
+[2026-02-09 20:18:15.363124] Target: storm_commander.py
+------------------------------------------------------------
+[2026-02-09 20:18:15.367140] Process Started. PID: 412
+[2026-02-09 20:19:00.496224] Audit Duration Reached. Terminating...
+[2026-02-09 20:19:00.530468] Process Terminated.
+------------------------------------------------------------
+CAPTURED STDOUT SNAPSHOT:
+------------------------------------------------------------
+[1m[95m>>> STORM COMMANDER: PERSISTENT BRAIN & MIGRATION ENGINE[0m
+Applying database schema...
+Target Database: C:\Users\Enes\.gemini\antigravity\scratch\storm\academic_brain.db
+Schema applied successfully! âœ…
+[LLM GATEWAY] Active provider: GROQ
+[96m[MODULES] Gap Finder: READY | LLM: GROQ[0m
+[92m[THEORY LOADED] Dead Internet Theory context active.[0m
+[92m[BRAIN] Loading persistent FAISS index...[0m
+[96mLoading Transformer Model (all-MiniLM-L6-v2)...[0m
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]
+Loading weights:   1%|          | 1/103 [00:00<00:00, 27594.11it/s, Materializing param=embeddings.LayerNorm.bias]
+Loading weights:   1%|          | 1/103 [00:00<00:00, 11366.68it/s, Materializing param=embeddings.LayerNorm.bias]
+Loading weights:   2%|1         | 2/103 [00:00<00:00, 11915.64it/s, Materializing param=embeddings.LayerNorm.weight]
+Loading weights:   2%|1         | 2/103 [00:00<00:00, 10070.36it/s, Materializing param=embeddings.LayerNorm.weight]
+Loading weights:   3%|2         | 3/103 [00:00<00:00, 11575.82it/s, Materializing param=embeddings.position_embeddings.weight]
+Loading weights:   3%|2         | 3/103 [00:00<00:00, 10450.92it/s, Materializing param=embeddings.position_embeddings.weight]
+Loading weights:   4%|3         | 4/103 [00:00<00:00, 11831.61it/s, Materializing param=embeddings.token_type_embeddings.weight]
+Loading weights:   4%|3         | 4/103 [00:00<00:00, 10979.85it/s, Materializing param=embeddings.token_type_embeddings.weight]
+Loading weights:   5%|4         | 5/103 [00:00<00:00, 12157.40it/s, Materializing param=embeddings.word_embeddings.weight]      
+Loading weights:   5%|4         | 5/103 [00:00<00:00, 11466.11it/s, Materializing param=embeddings.word_embeddings.weight]
+Loading weights:   6%|5         | 6/103 [00:00<00:00, 10352.05it/s, Materializing param=encoder.layer.0.attention.output.LayerNorm.bias]
+Loading weights:   6%|5         | 6/103 [00:00<00:00, 9324.13it/s, Materializing param=encoder.layer.0.attention.output.LayerNorm.bias] 
+Loading weights:   7%|6         | 7/103 [00:00<00:00, 8725.15it/s, Materializing param=encoder.layer.0.attention.output.LayerNorm.weight]
+Loading weights:   7%|6         | 7/103 [00:00<00:00, 7825.19it/s, Materializing param=encoder.layer.0.attention.output.LayerNorm.weight]
+Loading weights:   8%|7         | 8/103 [00:00<00:00, 6989.05it/s, Materializing param=encoder.layer.0.attention.output.dense.bias]      
+Loading weights:   8%|7         | 8/103 [00:00<00:00, 6700.17it/s, Materializing param=encoder.layer.0.attention.output.dense.bias]
+Loading weights:   9%|8         | 9/103 [00:00<00:00, 6629.56it/s, Materializing param=encoder.layer.0.attention.output.dense.weight]
+Loading weights:   9%|8         | 9/103 [00:00<00:00, 6422.04it/s, Materializing param=encoder.layer.0.attention.output.dense.weight]
+Loading weights:  10%|9         | 10/103 [00:00<00:00, 6824.45it/s, Materializing param=encoder.layer.0.attention.self.key.bias]     
+Loading weights:  10%|9         | 10/103 [00:00<00:00, 6691.61it/s, Materializing param=encoder.layer.0.attention.self.key.bias]
+Loading weights:  11%|#         | 11/103 [00:00<00:00, 6087.52it/s, Materializing param=encoder.layer.0.attention.self.key.weight]
+Loading weights:  11%|#         | 11/103 [00:00<00:00, 5908.23it/s, Materializing param=encoder.layer.0.attention.self.key.weight]
+Loading weights:  12%|#1        | 12/103 [00:00<00:00, 5781.26it/s, Materializing param=encoder.layer.0.attention.self.query.bias]
+Loading weights:  12%|#1        | 12/103 [00:00<00:00, 5640.03it/s, Materializing param=encoder.layer.0.attention.self.query.bias]
+Loading weights:  13%|#2        | 13/103 [00:00<00:00, 5891.51it/s, Materializing param=encoder.layer.0.attention.self.query.weight]
+Loading weights:  13%|#2        | 13/103 [00:00<00:00, 5797.55it/s, Materializing param=encoder.layer.0.attention.self.query.weight]
+------------------------------------------------------------
+RESOURCE USAGE:
+Message: Peak RAM: 549.62 MB
+Message: Avg CPU: 15.20%
+------------------------------------------------------------
+AUDIT COMPLETE
