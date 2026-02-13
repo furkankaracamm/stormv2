@@ -27,6 +27,16 @@ CREATE TABLE IF NOT EXISTS theories (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS theory_versions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    theory_id INTEGER NOT NULL,
+    version_num INTEGER NOT NULL,
+    change_description TEXT,
+    content_snapshot TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(theory_id) REFERENCES theories(id)
+);
+
 CREATE TABLE IF NOT EXISTS hypotheses (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     gap_id INTEGER,

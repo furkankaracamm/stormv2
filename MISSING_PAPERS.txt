@@ -177,3 +177,23 @@
 [2026-02-10 13:53] TITLE: [Peer Community in Psychology] Recommendation of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#3 | DOI: 10.24072/pci.psych.100010
 [2026-02-10 13:53] TITLE: [Peer Community in Psychology] Decision Revise: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1 | DOI: 10.24072/pci.psych.100010.d1
 [2026-02-10 13:53] TITLE: [Artificial Intelligence] Exploration-exploitation in multi-agent learning: Catastrophe theory meets game theory | DOI: 10.1016/j.artint.2021.103653
+[2026-02-13 03:32] TITLE: Deep learning (LeCun, Bengio, Hinton) | DOI: 10.1038/nature14246
+[2026-02-13 03:55] TITLE: [Artificial Intelligence] Exploration-exploitation in multi-agent learning: Catastrophe theory meets game theory | DOI: 10.1016/j.artint.2021.103653
+[2026-02-13 03:55] TITLE: [Engineering Applications of Artificial Intelligence] Common LISP modules: Artificial intelligence in the area of neural networks and chaos theory | DOI: 10.1016/0952-1976(93)90071-5
+[2026-02-13 03:55] TITLE: [Cyber Security: A Peer-Reviewed Journal] Security audits on artificial intelligence systems | DOI: 10.69554/dfce5797
+[2026-02-13 03:55] TITLE: [Peer Community in Psychology] Review of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1/Reviewer#1 | DOI: 10.24072/pci.psych.100010.rev11
+[2026-02-13 03:55] TITLE: [TECHNO REVIEW. International Technology, Science and Society Review /Revista Internacional De Tecnología, Ciencia Y Sociedad] Theory of Mind: From Artificial Intelligence to Hybrid Intelligence | DOI: 10.37467/gka-revtechno.v9.2816
+[2026-02-13 03:55] TITLE: [Peer Community in Psychology] Recommendation of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#3 | DOI: 10.24072/pci.psych.100010
+[2026-02-13 03:55] TITLE: [Peer Community in Psychology] Review of: Lay Beliefs About Artificial Versus Artificial Intelligence: Rethinking Theory of Machine. Round#1/Reviewer#2 | DOI: 10.24072/pci.psych.100010.rev12
+[2026-02-13 03:55] TITLE: [Cyber Security: A Peer-Reviewed Journal] The artificial intelligence security zugzwang | DOI: 10.69554/bxic8308
+[2026-02-13 03:56] TITLE: Realistic Approach towards Quantitative Analysis and Simulation of EEHC-Based Routing for Wireless Sensor Networks | DOI: http://arxiv.org/abs/1002.1151v1
+[2026-02-13 03:56] TITLE: Investigating Output Accuracy for a Discrete Event Simulation Model and an Agent Based Simulation Model | DOI: http://arxiv.org/abs/1003.4141v1
+[2026-02-13 03:57] TITLE: Optimisation of a Crossdocking Distribution Centre Simulation Model | DOI: http://arxiv.org/abs/1003.3775v1
+[2026-02-13 03:57] TITLE: Simulated Affection, Engineered Trust: How Anthropomorphic AI Benefits Surveillance Capitalism | DOI: http://arxiv.org/abs/2511.06472v1
+[2026-02-13 03:58] TITLE: [Computer] Generative AI is Breathing New Life Into the Dead Internet Theory | DOI: 10.1109/mc.2025.3616665
+[2026-02-13 03:58] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-13 03:58] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-13 03:58] TITLE: [Computer] Generative AI is Breathing New Life Into the Dead Internet Theory | DOI: 10.1109/mc.2025.3616665
+[2026-02-13 03:59] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276
+[2026-02-13 03:59] TITLE: [Computer] Generative AI is Breathing New Life Into the Dead Internet Theory | DOI: 10.1109/mc.2025.3616665
+[2026-02-13 04:02] TITLE: [üha] Is the "Dead Internet Theory" becoming reality? | DOI: 10.32739/uha.id.65276

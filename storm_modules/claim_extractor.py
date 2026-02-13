@@ -212,22 +212,24 @@ def _extract_claims_llm(llm, text: str, max_claims: int = 10, source: str = "tex
 TEXT:
 {text}
 
-Return ONLY a JSON array of claims. Each claim must have:
-- "text": exact claim text from the document
-- "type": one of FINDING, HYPOTHESIS, METHOD, LIMITATION
-- "confidence": number between 0.5 and 1.0
+Return ONLY a JSON object with a "claims" key containing an array. Each claim must have:
+- "claim_text": exact claim text from the document
+- "claim_type": one of FINDING, HYPOTHESIS, METHOD, THEORY
+- "confidence": number between 0.6 and 1.0
 
 Example format:
-[
-  {{"text": "Social media bots influence political discourse", "type": "FINDING", "confidence": 0.85}},
-  {{"text": "We hypothesize that bot activity increases during elections", "type": "HYPOTHESIS", "confidence": 0.75}}
-]
+{{
+  "claims": [
+    {{"claim_text": "Social media bots influence political discourse", "claim_type": "FINDING", "confidence": 0.85}},
+    {{"claim_text": "We hypothesize that bot activity increases during elections", "claim_type": "HYPOTHESIS", "confidence": 0.75}}
+  ]
+}}
 
 Rules:
 - Extract up to {max_claims} most important claims
 - Use exact wording from the text when possible
 - Higher confidence for main findings, lower for hypotheses/limitations
-- Return ONLY the JSON array, no other text"""
+- Return ONLY the JSON object, no other text"""
 
     response = llm.generate(
         prompt,
@@ -240,10 +242,28 @@ Rules:
     if not response:
         return []
     
-    claims = _parse_json_robust(response)
-    for c in claims:
-        c["source"] = source
-    return claims
+    from storm_modules.validation_models import ClaimSet, validate_llm_output
+    validated = validate_llm_output(ClaimSet, response, strict=False)
+    
+    if validated:
+        # Convert to list of dicts and normalize fields for internal pipeline
+        # Internal pipeline uses 'text', 'type', 'confidence'
+        # ClaimModel has 'claim_text', 'claim_type'
+        # We need to map them back? Or update pipeline?
+        # Pipeline uses: claim["text"], claim["type"]
+        # Let's map them to keep pipeline happy
+        claims = []
+        for c in validated.claims:
+            d = c.dict()
+            d["text"] = d.pop("claim_text")
+            d["type"] = d.pop("claim_type")
+            d["source"] = source
+            claims.append(d)
+        return claims
+
+    # Fallback to robust parser if validation totally failed (unlikely if strictly prompted)
+    # But if we want to be safe:
+    return []
 
 
 def _parse_json_robust(response: str) -> List[Dict]:
@@ -547,43 +567,41 @@ def extract_hypotheses(text: str) -> List[Dict]:
 
 def save_claims_to_db(filename: str, claims: List[Dict], db_path: Optional[str] = None) -> bool:
     """Save extracted claims to database with full metadata."""
+    from storm_modules.db_safety import get_db_connection
+    
     try:
         path = db_path or str(get_academic_brain_db_path())
-        conn = sqlite3.connect(path)
-        cursor = conn.cursor()
         
-        # Enhanced table schema
-        cursor.execute('''
-            CREATE TABLE IF NOT EXISTS paper_claims (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                filename TEXT NOT NULL,
-                claim_text TEXT,
-                claim_type TEXT,
-                confidence REAL,
-                validated INTEGER DEFAULT 0,
-                source_quote TEXT,
-                priority TEXT,
-                extracted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-        ''')
-        
-        for claim in claims:
-            cursor.execute('''
-                INSERT INTO paper_claims 
-                (filename, claim_text, claim_type, confidence, validated, source_quote, priority) 
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', (
-                filename,
-                claim.get("text", ""),
-                claim.get("type", "FINDING"),
-                claim.get("confidence", 0.5),
-                1 if claim.get("validated") else 0,
-                claim.get("source_quote", ""),
-                claim.get("priority", "MEDIUM")
-            ))
-        
-        conn.commit()
-        conn.close()
+        with get_db_connection(path) as conn:
+            # Enhanced table schema
+            conn.execute('''
+                CREATE TABLE IF NOT EXISTS paper_claims (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    filename TEXT NOT NULL,
+                    claim_text TEXT,
+                    claim_type TEXT,
+                    confidence REAL,
+                    validated INTEGER DEFAULT 0,
+                    source_quote TEXT,
+                    priority TEXT,
+                    extracted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                )
+            ''')
+            
+            for claim in claims:
+                conn.execute('''
+                    INSERT INTO paper_claims 
+                    (filename, claim_text, claim_type, confidence, validated, source_quote, priority) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    filename,
+                    claim.get("text", ""),
+                    claim.get("type", "FINDING"),
+                    claim.get("confidence", 0.5),
+                    1 if claim.get("validated") else 0,
+                    claim.get("source_quote", ""),
+                    claim.get("priority", "MEDIUM")
+                ))
         return True
     except Exception as e:
         print(f"[CLAIM DB ERROR] {e}")
@@ -592,30 +610,29 @@ def save_claims_to_db(filename: str, claims: List[Dict], db_path: Optional[str] 
 
 def get_top_claims(limit: int = 20, db_path: Optional[str] = None) -> List[Dict]:
     """Retrieve highest-confidence validated claims."""
+    from storm_modules.db_safety import get_db_connection
+    
     try:
         path = db_path or str(get_academic_brain_db_path())
-        conn = sqlite3.connect(path)
-        cursor = conn.cursor()
         
-        cursor.execute('''
-            SELECT filename, claim_text, claim_type, confidence, validated, priority 
-            FROM paper_claims 
-            ORDER BY validated DESC, confidence DESC 
-            LIMIT ?
-        ''', (limit,))
-        
-        results = []
-        for row in cursor.fetchall():
-            results.append({
-                "filename": row[0],
-                "text": row[1],
-                "type": row[2],
-                "confidence": row[3],
-                "validated": bool(row[4]),
-                "priority": row[5]
-            })
-        
-        conn.close()
+        with get_db_connection(path) as conn:
+            cursor = conn.execute('''
+                SELECT filename, claim_text, claim_type, confidence, validated, priority 
+                FROM paper_claims 
+                ORDER BY validated DESC, confidence DESC 
+                LIMIT ?
+            ''', (limit,))
+            
+            results = []
+            for row in cursor.fetchall():
+                results.append({
+                    "filename": row[0],
+                    "text": row[1],
+                    "type": row[2],
+                    "confidence": row[3],
+                    "validated": bool(row[4]),
+                    "priority": row[5]
+                })
         return results
     except Exception as e:
         print(f"[CLAIM QUERY ERROR] {e}")

@@ -3,7 +3,7 @@ Communication Theory Database Builder
 Uses LLM Gateway for unified LLM access with fallback chain.
 """
 import json
-import sqlite3
+
 from typing import Dict, List, Optional
 from storm_modules.config import get_academic_brain_db_path
 from storm_modules.llm_gateway import get_llm_gateway
@@ -35,6 +35,10 @@ class TheoryDatabaseBuilder:
         self.llm = get_llm_gateway()
         self.db_path = str(get_academic_brain_db_path())
         self.theories = {}
+        from storm_modules.theory_manager import TheoryVersionManager
+        self.version_manager = TheoryVersionManager()
+        from storm_modules.theory_validator import TheoryValidator
+        self.validator = TheoryValidator()
     
     def build_full_database(self) -> Dict[str, int]:
         """Build/update theory database. Returns stats."""
@@ -60,7 +64,7 @@ class TheoryDatabaseBuilder:
             
             if theory_data:
                 self.theories[theory_name] = theory_data
-                if self._save_theory_to_db(theory_name, theory_data):
+                if self.version_manager.create_or_update_theory(theory_name, theory_data, "Automated generation"):
                     print(f"  ✓ Saved")
                     stats['added'] += 1
                 else:
@@ -76,14 +80,14 @@ class TheoryDatabaseBuilder:
     def _get_existing_theories(self) -> set:
         """Get set of existing theory names from DB."""
         existing = set()
+        from storm_modules.db_safety import get_db_connection, DatabaseError
+        
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            cursor.execute("SELECT name FROM theories")
-            rows = cursor.fetchall()
-            existing = {r[0] for r in rows}
-            conn.close()
-        except sqlite3.Error as e:
+            with get_db_connection(self.db_path) as conn:
+                cursor = conn.execute("SELECT name FROM theories")
+                rows = cursor.fetchall()
+                existing = {r[0] for r in rows}
+        except DatabaseError as e:
             print(f"[DB WARNING] Could not load existing theories: {e}")
         return existing
     
@@ -127,66 +131,35 @@ NO preamble, ONLY JSON."""
             )
             
             if result:
-                # Clean and parse JSON
-                content = result.replace('```json', '').replace('```', '').strip()
-                return self._parse_json_safe(content)
+                # 1. Schema Validation
+                from storm_modules.validation_models import TheoryProfile, validate_llm_output
+                validated = validate_llm_output(TheoryProfile, result)
+                if not validated:
+                    print(f"  ⚠ Schema Validation Failed")
+                    return None
+                
+                print(f"  ✓ Schema Validation Passed")
+                
+                # 2. Quality Validation
+                is_valid, errors, score = self.validator.validate_theory(validated.dict())
+                
+                if not is_valid:
+                    print(f"  ⚠ Quality Validation Failed (Score: {score:.2f})")
+                    for err in errors:
+                        print(f"    - {err}")
+                    return None
+                
+                print(f"  ✓ Quality Validation Passed (Score: {score:.2f})")
+                return validated.dict()
                 
         except Exception as e:
             print(f"  ⚠ LLM Error: {e}")
         
         return None
     
-    def _parse_json_safe(self, content: str) -> Optional[Dict]:
-        """Parse JSON with multiple fallback strategies."""
-        # Strategy 1: Direct parse
-        try:
-            return json.loads(content)
-        except json.JSONDecodeError:
-            pass
-        
-        # Strategy 2: Find JSON object in content
-        try:
-            start = content.find('{')
-            end = content.rfind('}') + 1
-            if start >= 0 and end > start:
-                return json.loads(content[start:end])
-        except json.JSONDecodeError:
-            pass
-        
-        # Strategy 3: Fix common issues
-        try:
-            fixed = content.replace("'", '"').replace('\n', ' ')
-            return json.loads(fixed)
-        except json.JSONDecodeError as e:
-            print(f"  ⚠ JSON parse failed: {e}")
-        
-        return None
+
     
-    def _save_theory_to_db(self, theory_name: str, theory_data: Dict) -> bool:
-        """Save theory to SQLite database."""
-        try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            cursor.execute("""
-                INSERT OR REPLACE INTO theories
-                (name, core_propositions, key_concepts, typical_hypotheses, 
-                 typical_methods, boundary_conditions, digital_application)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            """, (
-                theory_name,
-                json.dumps(theory_data.get('core_propositions', [])),
-                json.dumps(theory_data.get('key_concepts', [])),
-                json.dumps(theory_data.get('typical_hypotheses', [])),
-                json.dumps(theory_data.get('typical_methods', {})),
-                json.dumps(theory_data.get('boundary_conditions', [])),
-                theory_data.get('digital_application', '')
-            ))
-            conn.commit()
-            conn.close()
-            return True
-        except sqlite3.Error as e:
-            print(f"  ⚠ DB error: {e}")
-            return False
+
 
 
 if __name__ == "__main__":

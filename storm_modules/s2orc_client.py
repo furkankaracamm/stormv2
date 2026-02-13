@@ -2,6 +2,7 @@
 import requests
 import os
 from typing import List, Dict, Optional
+from storm_modules.rate_limiter import rate_limited
 
 class S2ORCClient:
     BASE_URL = "https://api.semanticscholar.org/graph/v1"
@@ -10,6 +11,7 @@ class S2ORCClient:
         self.api_key = api_key or os.environ.get("S2_API_KEY")
         self.headers = {"x-api-key": self.api_key} if self.api_key else {}
 
+    @rate_limited("semantic_scholar")
     def search_papers(self, query: str, limit: int = 10) -> List[Dict]:
         """Search for papers on Semantic Scholar"""
         endpoint = f"{self.BASE_URL}/paper/search"
@@ -28,6 +30,7 @@ class S2ORCClient:
             
         return []
 
+    @rate_limited("semantic_scholar")
     def get_paper_details(self, paper_id: str) -> Optional[Dict]:
         """Fetch full details and citations for a paper"""
         endpoint = f"{self.BASE_URL}/paper/{paper_id}"

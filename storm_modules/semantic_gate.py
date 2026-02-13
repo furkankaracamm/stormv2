@@ -6,6 +6,7 @@ Advisory filter using Semantic Scholar metadata to ensure high-leverage download
 import requests
 import time
 from typing import Optional, Dict, List
+from storm_modules.rate_limiter import rate_limited
 
 class SemanticQualityGate:
     def __init__(self):
@@ -34,6 +35,7 @@ class SemanticQualityGate:
             "Agricultural and Food Sciences"
         }
 
+    @rate_limited("semantic_scholar")
     def check_quality(self, title: str) -> bool:
         """
         Consults Semantic Scholar to validate paper relevance.
@@ -55,8 +57,7 @@ class SemanticQualityGate:
                 "fields": "title,fieldsOfStudy,citationCount"
             }
             
-            # Rate limit protection (conservative)
-            time.sleep(0.5)
+            # Rate limit protection (handled by decorator)
             
             r = requests.get(self.api_url, params=params, headers=self.headers, timeout=5)
             

@@ -1,6 +1,6 @@
 """Quantitative Study Designer - Hypotheses → Full Methodology"""
 import json
-import sqlite3
+
 import numpy as np
 from typing import Dict, List
 from pathlib import Path
@@ -120,22 +120,20 @@ Output ONLY JSON:
         return plan
     
     def _save_design(self, gap: str, theory: str, design: Dict):
+        from storm_modules.db_safety import get_db_connection
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            gap_id = abs(hash(gap)) % 1000000
-            cursor.execute("SELECT id FROM theories WHERE name = ?", (theory,))
-            theory_row = cursor.fetchone()
-            theory_id = theory_row[0] if theory_row else None
-            
-            cursor.execute("""
-                INSERT INTO study_designs
-                (gap_id, theory_id, sample_size, design_type, variables, measures, analysis_plan)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            """, (gap_id, theory_id, design['sample_size'], design['design_type'],
-                 json.dumps(design['variables']), json.dumps(design['measures']),
-                 json.dumps(design['analysis_plan'])))
-            conn.commit()
-            conn.close()
+            with get_db_connection(self.db_path) as conn:
+                gap_id = abs(hash(gap)) % 1000000
+                cursor = conn.execute("SELECT id FROM theories WHERE name = ?", (theory,))
+                theory_row = cursor.fetchone()
+                theory_id = theory_row[0] if theory_row else None
+                
+                conn.execute("""
+                    INSERT INTO study_designs
+                    (gap_id, theory_id, sample_size, design_type, variables, measures, analysis_plan)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                """, (gap_id, theory_id, design['sample_size'], design['design_type'],
+                     json.dumps(design['variables']), json.dumps(design['measures']),
+                     json.dumps(design['analysis_plan'])))
         except Exception as e:
             print(f"[SAVE ERROR] {e}")

@@ -1,0 +1,9 @@
+2026-02-13 03:26:54,231 - STORM_Governance - ERROR - [TestFunc] ValueError: Intentional Fail
+Stack Trace:
+Traceback (most recent call last):
+  File "C:\Users\Enes\.gemini\antigravity\scratch\storm\storm_modules\error_handler.py", line 52, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Enes\.gemini\antigravity\scratch\storm\tests\test_advanced_features.py", line 85, in fail_func
+    raise ValueError("Intentional Fail")
+ValueError: Intentional Fail
+

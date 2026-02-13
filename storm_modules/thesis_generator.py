@@ -3,7 +3,7 @@ THESIS GENERATOR - Full Pipeline with Semantic Theory Matching
 Zero-Error Architecture: FAZ B + FAZ C implementation
 """
 import json
-import sqlite3
+
 import numpy as np
 from pathlib import Path
 from datetime import datetime
@@ -116,18 +116,17 @@ class ThesisGenerator:
     
     def _find_best_gap(self, topic: str) -> str:
         """Find best matching gap from database."""
+        from storm_modules.db_safety import get_db_connection, DatabaseError
         try:
-            conn = sqlite3.connect(str(get_insights_db_path()))
-            cursor = conn.cursor()
-            cursor.execute("""
-                SELECT description FROM gaps
-                WHERE status = 'VALIDATED' AND description LIKE ?
-                ORDER BY (geometric_score + epistemic_score) DESC LIMIT 1
-            """, (f'%{topic}%',))
-            row = cursor.fetchone()
-            conn.close()
+            with get_db_connection(str(get_insights_db_path())) as conn:
+                cursor = conn.execute("""
+                    SELECT description FROM gaps
+                    WHERE status = 'VALIDATED' AND description LIKE ?
+                    ORDER BY (geometric_score + epistemic_score) DESC LIMIT 1
+                """, (f'%{topic}%',))
+                row = cursor.fetchone()
             return row[0] if row else f"Research gap in {topic}"
-        except sqlite3.Error as e:
+        except DatabaseError as e:
             print(f"  ⚠ DB error: {e}")
             return f"Research gap in {topic}"
     
@@ -169,12 +168,11 @@ class ThesisGenerator:
         self._theories_cache = {}
         self._theory_embeddings = {}
         
+        from storm_modules.db_safety import get_db_connection, DatabaseError
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            cursor.execute("SELECT name, core_propositions, digital_application FROM theories")
-            rows = cursor.fetchall()
-            conn.close()
+            with get_db_connection(self.db_path) as conn:
+                cursor = conn.execute("SELECT name, core_propositions, digital_application FROM theories")
+                rows = cursor.fetchall()
             
             if not rows:
                 print("  ⚠ No theories found in database")
@@ -203,7 +201,7 @@ class ThesisGenerator:
             
             print(f"  [INFO] Loaded {len(self._theories_cache)} theory embeddings")
             
-        except sqlite3.Error as e:
+        except DatabaseError as e:
             print(f"  ⚠ Error loading theories: {e}")
     
     def _synthesize_literature(self, gap: str, topic: str) -> str:
@@ -235,28 +233,25 @@ class ThesisGenerator:
     def _find_relevant_papers(self, topic: str, limit: int = 15) -> List[Dict]:
         """Find papers relevant to topic from metadata."""
         papers = []
+        from storm_modules.db_safety import get_db_connection, DatabaseError
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            
-            # Search in metadata
-            cursor.execute("""
-                SELECT filename, content FROM metadata
-                WHERE content LIKE ? OR filename LIKE ?
-                LIMIT ?
-            """, (f'%{topic}%', f'%{topic}%', limit))
-            
-            for filename, content in cursor.fetchall():
-                papers.append({
-                    'filename': filename,
-                    'content': content[:1000] if content else '',
-                    'authors': 'Unknown',
-                    'year': '2024',
-                    'key_findings': (content[:300] if content else '')
-                })
-            
-            conn.close()
-        except sqlite3.Error as e:
+            with get_db_connection(self.db_path) as conn:
+                # Search in metadata
+                cursor = conn.execute("""
+                    SELECT filename, content FROM metadata
+                    WHERE content LIKE ? OR filename LIKE ?
+                    LIMIT ?
+                """, (f'%{topic}%', f'%{topic}%', limit))
+                
+                for filename, content in cursor.fetchall():
+                    papers.append({
+                        'filename': filename,
+                        'content': content[:1000] if content else '',
+                        'authors': 'Unknown',
+                        'year': '2024',
+                        'key_findings': (content[:300] if content else '')
+                    })
+        except DatabaseError as e:
             print(f"  ⚠ Paper search error: {e}")
         
         return papers

@@ -6,7 +6,7 @@ import requests
 import re
 import faiss
 import numpy as np
-import sqlite3
+
 import random
 import networkx as nx
 import asyncio
@@ -131,18 +131,15 @@ class PersistentBrain:
         if not os.path.exists(data_dir):
             os.makedirs(data_dir)
 
-        # 1. Initialize SQLite Metadata Store with WAL mode for resilience
-        self.conn = sqlite3.connect(self.db_path, check_same_thread=False, timeout=30.0)
-        self.conn.execute("PRAGMA journal_mode=WAL")  # Enable Write-Ahead Logging
-        self.conn.execute("PRAGMA busy_timeout=30000")  # 30 second wait on locks
-        self.cursor = self.conn.cursor()
-        self.cursor.execute('''CREATE TABLE IF NOT EXISTS metadata 
-                             (id INTEGER PRIMARY KEY, filename TEXT, content TEXT)''')
-        self.cursor.execute('CREATE TABLE IF NOT EXISTS processed_files (filename TEXT PRIMARY KEY)')
-        
-        # [SELF-HEALING] Sync processed_files with metadata on startup
-        self.cursor.execute("INSERT OR IGNORE INTO processed_files (filename) SELECT filename FROM metadata")
-        self.conn.commit()
+        # 1. Initialize SQLite Metadata Store with WAL mode
+        from storm_modules.db_safety import get_db_connection
+        with get_db_connection(self.db_path) as conn:
+            conn.execute("PRAGMA journal_mode=WAL")
+            conn.execute('''CREATE TABLE IF NOT EXISTS metadata 
+                          (id INTEGER PRIMARY KEY, filename TEXT, content TEXT)''')
+            conn.execute('CREATE TABLE IF NOT EXISTS processed_files (filename TEXT PRIMARY KEY)')
+            # [SELF-HEALING] Sync processed_files with metadata on startup
+            conn.execute("INSERT OR IGNORE INTO processed_files (filename) SELECT filename FROM metadata")
 
         # 2. Initialize Persistent FAISS Index
         if os.path.exists(self.index_path):
@@ -160,8 +157,10 @@ class PersistentBrain:
             self.graph = nx.DiGraph()
 
     def is_processed(self, filename):
-        self.cursor.execute('SELECT 1 FROM processed_files WHERE filename = ?', (filename,))
-        return self.cursor.fetchone() is not None
+        from storm_modules.db_safety import get_db_connection
+        with get_db_connection(self.db_path) as conn:
+            cursor = conn.execute('SELECT 1 FROM processed_files WHERE filename = ?', (filename,))
+            return cursor.fetchone() is not None
 
     def is_title_processed(self, title_fragment):
         clean = "".join(x for x in title_fragment if x.isalnum() or x in " ")
@@ -169,8 +168,10 @@ class PersistentBrain:
         if len(parts) < 2: return False
         
         keyword = parts[0] + "%" + parts[-1]
-        self.cursor.execute("SELECT 1 FROM processed_files WHERE filename LIKE ?", (f"%{keyword}%",))
-        return self.cursor.fetchone() is not None
+        from storm_modules.db_safety import get_db_connection
+        with get_db_connection(self.db_path) as conn:
+            cursor = conn.execute("SELECT 1 FROM processed_files WHERE filename LIKE ?", (f"%{keyword}%",))
+            return cursor.fetchone() is not None
 
     def add_batch(self, documents, embeddings, metadatas):
         if not documents: return
@@ -179,44 +180,49 @@ class PersistentBrain:
         self.index.add(embeddings_np)
         faiss.write_index(self.index, self.index_path)
         
-        for doc, meta in zip(documents, metadatas):
-            self.cursor.execute('INSERT INTO metadata (filename, content) VALUES (?, ?)', 
-                              (meta['source'], doc))
-            self.graph.add_node(meta['source'], type='document')
-            # [FIX] Mark processed atomically within the same transaction to prevent ghost vectors
-            self.cursor.execute('INSERT OR IGNORE INTO processed_files (filename) VALUES (?)', (meta['source'],))
+        from storm_modules.db_safety import get_db_connection
+        try:
+            with get_db_connection(self.db_path) as conn:
+                for doc, meta in zip(documents, metadatas):
+                    conn.execute('INSERT INTO metadata (filename, content) VALUES (?, ?)', 
+                                      (meta['source'], doc))
+                    self.graph.add_node(meta['source'], type='document')
+                    # [FIX] Mark processed atomically within the same transaction
+                    conn.execute('INSERT OR IGNORE INTO processed_files (filename) VALUES (?)', (meta['source'],))
+        except Exception as e:
+            print(f"[BRAIN ERROR] Batch add failed: {e}")
             
-        self.conn.commit()
         with open(os.path.join(self.data_dir, "knowledge_graph.pkl"), 'wb') as f:
             pickle.dump(self.graph, f)
             
     # Deprecated standalone method (kept for compatibility)
     def mark_processed(self, filename):
-        self.cursor.execute('INSERT OR IGNORE INTO processed_files (filename) VALUES (?)', (filename,))
-        self.conn.commit()
-
-    def mark_processed(self, filename):
-        self.cursor.execute('INSERT OR IGNORE INTO processed_files (filename) VALUES (?)', (filename,))
-        self.conn.commit()
+        from storm_modules.db_safety import get_db_connection
+        with get_db_connection(self.db_path) as conn:
+            conn.execute('INSERT OR IGNORE INTO processed_files (filename) VALUES (?)', (filename,))
 
     def get_stats(self):
-        self.cursor.execute("SELECT COUNT(*) FROM processed_files WHERE filename LIKE 'BOOK_%'")
-        books = self.cursor.fetchone()[0]
-        self.cursor.execute("SELECT COUNT(*) FROM processed_files WHERE filename LIKE 'PAPER_%'")
-        papers = self.cursor.fetchone()[0]
-        self.cursor.execute("SELECT COUNT(*) FROM processed_files")
-        total = self.cursor.fetchone()[0]
+        from storm_modules.db_safety import get_db_connection
+        with get_db_connection(self.db_path) as conn:
+            cursor = conn.execute("SELECT COUNT(*) FROM processed_files WHERE filename LIKE 'BOOK_%'")
+            books = cursor.fetchone()[0]
+            cursor = conn.execute("SELECT COUNT(*) FROM processed_files WHERE filename LIKE 'PAPER_%'")
+            papers = cursor.fetchone()[0]
+            cursor = conn.execute("SELECT COUNT(*) FROM processed_files")
+            total = cursor.fetchone()[0]
         return {"processed": total, "books": books, "papers": papers}
 
     def search(self, query_embedding, k=3):
         distances, indices = self.index.search(np.array([query_embedding]).astype('float32'), k)
         results = []
-        for idx in indices[0]:
-            if idx != -1:
-                self.cursor.execute('SELECT filename, content FROM metadata WHERE id = ?', (int(idx) + 1,))
-                row = self.cursor.fetchone()
-                if row:
-                    results.append({"filename": row[0], "content": row[1]})
+        from storm_modules.db_safety import get_db_connection
+        with get_db_connection(self.db_path) as conn:
+            for idx in indices[0]:
+                if idx != -1:
+                    cursor = conn.execute('SELECT filename, content FROM metadata WHERE id = ?', (int(idx) + 1,))
+                    row = cursor.fetchone()
+                    if row:
+                        results.append({"filename": row[0], "content": row[1]})
         return results
 
 class StormCommander:
@@ -224,10 +230,19 @@ class StormCommander:
         # Prevent multiple instances
         acquire_lock()
         
+        # [CRITICAL] Initialize Error Handler
+        from storm_modules.error_handler import error_handler
+        sys.excepthook = error_handler.handle_uncaught_exception
+        
         print(f"{Colors.BOLD}{Colors.HEADER}>>> STORM COMMANDER: PERSISTENT BRAIN & MIGRATION ENGINE{Colors.ENDC}", flush=True)
         
         # [CRITICAL] Enforce Database Integrity on Startup
-        storm_modules.schema.apply_schema()
+        try:
+            storm_modules.schema.apply_schema()
+        except Exception as e:
+            error_handler.log_error(e, "Schema Application", "CRITICAL")
+            raise
+
         self.base_dir = os.getcwd()
         self.data_dir = os.path.join(self.base_dir, "storm_persistent_brain")
         self.source_pdfs = os.path.join(self.base_dir, "storm_data", "pdfs")
@@ -235,7 +250,10 @@ class StormCommander:
         self.pdfs_dir = self.source_pdfs
         
         # Telegram Config
-        self.API_ID = int(os.environ.get("STORM_TELEGRAM_API_ID", 0))
+        
+        # Telegram Config
+        api_id_val = os.environ.get("STORM_TELEGRAM_API_ID", "0")
+        self.API_ID = int(api_id_val) if api_id_val and api_id_val.strip().isdigit() else 0
         self.API_HASH = os.environ.get("STORM_TELEGRAM_API_HASH", "")
         self.BOT_USERNAME = 'scihubot'
         
@@ -270,18 +288,17 @@ class StormCommander:
         
         # Load theories from DB
         self.theory_context = {}
+        from storm_modules.db_safety import get_db_connection
         try:
             db_path = os.path.join(self.base_dir, "academic_brain.db")
             if os.path.exists(db_path):
-                conn = sqlite3.connect(db_path)
-                cursor = conn.cursor()
-                cursor.execute("SELECT name, core_propositions FROM theories WHERE name='Dead Internet Theory'")
-                row = cursor.fetchone()
-                if row:
-                    self.theory_context['name'] = row[0]
-                    self.theory_context['propositions'] = json.loads(row[1])
-                    print(f"{Colors.GREEN}[THEORY LOADED] {row[0]} context active.{Colors.ENDC}")
-                conn.close()
+                with get_db_connection(db_path) as conn:
+                    cursor = conn.execute("SELECT name, core_propositions FROM theories WHERE name='Dead Internet Theory'")
+                    row = cursor.fetchone()
+                    if row:
+                        self.theory_context['name'] = row[0]
+                        self.theory_context['propositions'] = json.loads(row[1])
+                        print(f"{Colors.GREEN}[THEORY LOADED] {row[0]} context active.{Colors.ENDC}")
         except Exception as e:
             print(f"{Colors.WARNING}[THEORY DB ERROR] {e}{Colors.ENDC}")
         
@@ -868,7 +885,7 @@ class StormCommander:
                          log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Direct Source Success.")
                          self.stats['downloaded'] += 1; return True
 
-            # TIER 1: LEGAL SPEED LAYER
+            # TIER 1: LEGAL SPEED LAYER (Unpaywall)
             if item_type == "paper" and url_or_doi and isinstance(url_or_doi, str) and url_or_doi.startswith("10."):
                 if await self.run_legal_speed_layer(url_or_doi, file_path):
                      is_ok, msg = self.validate_pdf(file_path)
@@ -876,11 +893,23 @@ class StormCommander:
                          log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Legal Speed Layer Success.")
                          self.stats['downloaded'] += 1; return True
 
-            # TIER 2: ANNA'S ARCHIVE V2
+            # TIER 1.5: OPENALEX FALLBACK
+            if item_type == "paper" and url_or_doi and isinstance(url_or_doi, str) and url_or_doi.startswith("10."):
+                if self.openalex_client.is_available():
+                    oa_url = self.openalex_client.resolve_doi(url_or_doi)
+                    if oa_url:
+                        log_action(f"      [OPENALEX] Found OA fallback: {oa_url[:50]}...")
+                        if await self.fetch_direct(oa_url, file_path):
+                             is_ok, msg = self.validate_pdf(file_path)
+                             if is_ok:
+                                 log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} OpenAlex Success.")
+                                 self.stats['downloaded'] += 1; return True
+
+            # TIER 2: ANNA'S ARCHIVE V2 (+ Library.lol)
             if await self.fetch_from_annas_v2(url_or_doi or title, file_path):
                  is_ok, msg = self.validate_pdf(file_path)
                  if is_ok:
-                     log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Anna's Archive V2 Success.")
+                     log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Anna's Archive/LibGen Success.")
                      self.stats['downloaded'] += 1; return True
 
             # TIER 3: TELEGRAM
@@ -891,27 +920,35 @@ class StormCommander:
                         log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Telegram Success: '{title[:30]}...'")
                         self.stats['downloaded'] += 1; return True
 
-            # TIER 4: DIRECT SCI-HUB MIRRORS
+            # TIER 4: SCIDOWNL PROTECTED LAYER (Replaces raw scraping)
             if item_type == "paper" and url_or_doi and isinstance(url_or_doi, str) and ("/" in url_or_doi or "10." in url_or_doi):
-                log_action(f"      [ACTION] Exhausting direct Sci-Hub infrastructure for: {url_or_doi[:40]}")
-                if await self.fetch_direct(url_or_doi, file_path):
+                log_action(f"      [ACTION] Engaging Sci-Hub Protocol (Scidownl): {url_or_doi[:40]}")
+                # Use scidownl directly as it handles mirrors better than brittle BS4
+                from scidownl import scihub_download
+                
+                # Helper to run blocking scidownl in thread
+                def run_scidownl():
+                    try:
+                        # Direct download to file path
+                        scihub_download(url_or_doi, paper_type="doi", out=file_path)
+                        return os.path.exists(file_path) and os.path.getsize(file_path) > 10000
+                    except Exception as e:
+                        # log_action(f"        [SCIDOWNL DEBUG] {e}")
+                        return False
+
+                loop = asyncio.get_running_loop()
+                success = await loop.run_in_executor(None, run_scidownl)
+                
+                if success:
                     is_ok, msg = self.validate_pdf(file_path)
                     if is_ok: 
-                        log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Sci-Hub Direct Success.")
+                        log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Sci-Hub (Scidownl) Success.")
                         self.stats['downloaded'] += 1; return True
                     else: 
-                        log_action(f"      {Colors.FAIL}[REJECTED]{Colors.ENDC} {msg}. Deleting local copy.")
                         try: os.remove(file_path) 
                         except: pass
             
-            # TIER 5: SCIDOWNL FALLBACK (DOI ONLY)
-            if item_type == "paper" and url_or_doi and isinstance(url_or_doi, str) and "10." in url_or_doi:
-                 log_action(f"      [ACTION] Attempting Scidownl DOI Resolution fallback...")
-                 if await self.fetch_direct(url_or_doi, file_path):
-                      is_ok, msg = self.validate_pdf(file_path)
-                      if is_ok: 
-                          log_action(f"      {Colors.GREEN}[VERIFIED]{Colors.ENDC} Scidownl Success.")
-                          self.stats['downloaded'] += 1; return True
+            return False
             
             return False
 
@@ -1069,13 +1106,24 @@ class StormCommander:
                 links = soup.find_all('a', href=True)
                 for l in links:
                     if "/md5/" in l['href']:
+                        md5_hash = l['href'].split("/md5/")[-1].strip()
+                        if md5_hash:
+                            # [HYBRID RESOLVER] Try direct Library.lol resolution first (Fastest)
+                            liblol_url = f"http://library.lol/main/{md5_hash}"
+                            # log_action(f"        [LIBGEN FAST] Trying {liblol_url}...")
+                            return liblol_url
+                            
+                        # Fallback to Anna's scrape if direct fail (Logic flows to next iter if return above fails? No, retrieve_item calls fetch_direct on return)
+                        # Actually, we return the URL here. fetch_direct will try it. 
+                        # If library.lol is blocked, we might want the other links.
+                        # But simpler is better: Prefer Library.lol
+                        
                         book_page = base_url + l['href']
                         r2 = await loop.run_in_executor(None, lambda: requests.get(book_page, headers=headers, timeout=10))
                         soup2 = BeautifulSoup(r2.text, 'html.parser')
                         down_links = soup2.find_all('a', href=True)
                         for dl in down_links:
                             href = dl['href']
-                            # [PROTOCOL UPDATE] Allow LibGen loops as they are often cleaner than Anna's direct
                             if ("ipfs" in href or "scihub" in href or "annas-archive" in href or "library.lol" in href or "libgen" in href):
                                 return href
                 return None
@@ -1231,110 +1279,118 @@ class StormCommander:
             'social media bot detection PhD thesis', 'theory of non-human discourse dissertation'
         ]
         
+        from storm_modules.error_handler import error_handler
+
         while True:
-            self.cycle_count = getattr(self, 'cycle_count', 0) + 1
-            print(f"\n{Colors.BOLD}{Colors.BLUE}>>> PROFESSOR STATUS (Cycle {self.cycle_count}): {self.stats['ingested_total']} Read | {self.brain.index.ntotal} Memories{Colors.ENDC}", flush=True)
+            try:
+                self.cycle_count = getattr(self, 'cycle_count', 0) + 1
+                print(f"\n{Colors.BOLD}{Colors.BLUE}>>> PROFESSOR STATUS (Cycle {self.cycle_count}): {self.stats['ingested_total']} Read | {self.brain.index.ntotal} Memories{Colors.ENDC}", flush=True)
 
-            # GAP FINDER TRIGGER (Every 10 Cycles)
-            if self.cycle_count % 10 == 0:
-                print(f"{Colors.BOLD}{Colors.MAGENTA}>>> GAP FINDER: Analyzing Research Landscape...{Colors.ENDC}")
-                try:
-                    gaps = self.gap_finder.get_top_gaps(limit=3)
-                    if gaps:
-                        # [SEMANTIC FIX] Archive gaps for future research phases
-                        self.gap_finder.save_gaps_to_db(gaps)
-                        
-                        top_gap = gaps[0]
-                        suggestion = top_gap.get('suggestion', 'No suggestion')
-                        log_action(f"  {Colors.MAGENTA}[GAP ARCHIVED] {suggestion} (Saved to DB){Colors.ENDC}")
-                        
-                        # Reflexive Action: Use gap to drive IMMEDIATE reading
-                        await self.retrieve_item(None, suggestion + " research paper", "paper")
-                except Exception as e:
-                    log_action(f"  [GAP ERROR] {e}")
+                # GAP FINDER TRIGGER (Every 10 Cycles)
+                if self.cycle_count % 10 == 0:
+                    print(f"{Colors.BOLD}{Colors.MAGENTA}>>> GAP FINDER: Analyzing Research Landscape...{Colors.ENDC}")
+                    try:
+                        gaps = self.gap_finder.get_top_gaps(limit=3)
+                        if gaps:
+                            # [SEMANTIC FIX] Archive gaps for future research phases
+                            self.gap_finder.save_gaps_to_db(gaps)
+                            
+                            top_gap = gaps[0]
+                            suggestion = top_gap.get('suggestion', 'No suggestion')
+                            log_action(f"  {Colors.MAGENTA}[GAP ARCHIVED] {suggestion} (Saved to DB){Colors.ENDC}")
+                            
+                            # Reflexive Action: Use gap to drive IMMEDIATE reading
+                            await self.retrieve_item(None, suggestion + " research paper", "paper")
+                    except Exception as e:
+                        log_action(f"  [GAP ERROR] {e}")
 
-            # STRATEGIC LLM REFLECTION (Every 5 Cycles)
-            if self.cycle_count % 5 == 0 and self.llm.is_available():
-                prompt = f"""Synthesize a profound research question following 'Dead Internet Theory' logic.
-                Return JSON only: {{"question": "...", "target_query": "specific search terms", "rationale": "..."}}"""
-                raw_insight = self.llm.generate(prompt, max_tokens=200, json_mode=True)
-                
-                if raw_insight:
-                    insight_data = self.research_planner.parse_llm_insight(raw_insight)
-                    if insight_data and "target_query" in insight_data:
-                        self.research_planner.add_insight("STRATEGIC_RESEARCH", insight_data, insight_data["target_query"])
-                        log_action(f"  {Colors.CYAN}[STRATEGIC INSIGHT] {insight_data.get('question')[:80]}...{Colors.ENDC}")
-            
-            # PHASE 0: STRATEGIC STEERING (LLM DRIVEN)
-            strategic_targets = self.research_planner.get_top_strategic_targets(limit=1)
-            active_strategic_id = None
-            
-            # [PLURALISMRefactor] Check for bypass roll
-            pluralism_bypass = random.random() < self.pluralism_threshold
-            
-            if strategic_targets and not pluralism_bypass:
-                target_meta = strategic_targets[0]
-                active_strategic_id = target_meta["id"]
-                target = target_meta["query"]
-                log_action(f"  {Colors.BOLD}{Colors.CYAN}[STRATEGIC STEER]{Colors.ENDC} LLM Weight ({target_meta['weight']:.2f}) -> '{target}'")
-                
-                # Execute strategic discovery
-                success = await self.run_scihub_layer(target)
-                success = success or await self.run_annas_layer(target)
-                
-                if success:
-                    self.research_planner.report_success(active_strategic_id)
-                else:
-                    self.research_planner.report_failure(active_strategic_id)
-
-            # PHASE 1: PRIORITY RESEARCH (DIRECTED)
-            elif self.priority_books:
-                if strategic_targets and pluralism_bypass:
-                    log_action(f"  {Colors.YELLOW}[PLURALISM BYPASS]{Colors.ENDC} Diverting from LLM to User Priority List")
-                target_book = self.priority_books.pop(0)
-                print(f"  {Colors.HEADER}[PRIORITY RESEARCH]{Colors.ENDC} Targeting: {Colors.BOLD}{target_book}{Colors.ENDC}", flush=True)
-                await self.run_annas_layer(target_book)
-                await self.run_arxiv_layer(f"Critical analysis of {target_book}")
-            
-            # PHASE 2: DISCOVERY (GAP FINDING / ONTOLOGY DRIVEN)
-            else:
-                if strategic_targets and pluralism_bypass:
-                    log_action(f"  {Colors.YELLOW}[PLURALISM BYPASS]{Colors.ENDC} Diverting from LLM to Ontology Layer")
-                # 80% chance to derive topic from Ontology (Structured Research)
-                if random.random() < 0.8:
-                    sub_topic = random.choice(self.ontology.get_all_topics())
-                    context = self.ontology.get_domain_context(sub_topic)
+                # STRATEGIC LLM REFLECTION (Every 5 Cycles)
+                if self.cycle_count % 5 == 0 and self.llm.is_available():
+                    prompt = f"""Synthesize a profound research question following 'Dead Internet Theory' logic.
+                    Return JSON only: {{"question": "...", "target_query": "specific search terms", "rationale": "..."}}"""
+                    raw_insight = self.llm.generate(prompt, max_tokens=200, json_mode=True)
                     
-                    # Construct a sophisticated academic query
-                    target = f"{sub_topic} {random.choice(self.academic_qualifiers)} \"Dead Internet Theory\""
-                    log_action(f"  {Colors.MAGENTA}[ONTOLOGY FOCUS]{Colors.ENDC} {context} -> '{sub_topic}'")
-                    
-                # 20% chance for Wildcard Exploration
-                else:
-                    base = random.choice(seeds)
-                    qualifier = random.choice(self.academic_qualifiers)
-                    target = f"{base} {qualifier}"
-                    log_action(f"  {Colors.CYAN}[WILDCARD EXPLORATION]{Colors.ENDC} '{target}'")
+                    if raw_insight:
+                        insight_data = self.research_planner.parse_llm_insight(raw_insight)
+                        if insight_data and "target_query" in insight_data:
+                            self.research_planner.add_insight("STRATEGIC_RESEARCH", insight_data, insight_data["target_query"])
+                            log_action(f"  {Colors.CYAN}[STRATEGIC INSIGHT] {insight_data.get('question')[:80]}...{Colors.ENDC}")
                 
-                # [BATCH CHECK] Skip discovery if session limit reached
-                if self.session_download_count >= self.session_download_limit:
-                    log_action(f"  {Colors.WARNING}[BATCH LIMIT]{Colors.ENDC} 60 files gathered. Skipping discovery until ingested.")
+                # PHASE 0: STRATEGIC STEERING (LLM DRIVEN)
+                strategic_targets = self.research_planner.get_top_strategic_targets(limit=1)
+                active_strategic_id = None
+                
+                # [PLURALISMRefactor] Check for bypass roll
+                pluralism_bypass = random.random() < self.pluralism_threshold
+                
+                if strategic_targets and not pluralism_bypass:
+                    target_meta = strategic_targets[0]
+                    active_strategic_id = target_meta["id"]
+                    target = target_meta["query"]
+                    log_action(f"  {Colors.BOLD}{Colors.CYAN}[STRATEGIC STEER]{Colors.ENDC} LLM Weight ({target_meta['weight']:.2f}) -> '{target}'")
+                    
+                    # Execute strategic discovery
+                    success = await self.run_scihub_layer(target)
+                    success = success or await self.run_annas_layer(target)
+                    
+                    if success:
+                        self.research_planner.report_success(active_strategic_id)
+                    else:
+                        self.research_planner.report_failure(active_strategic_id)
+
+                # PHASE 1: PRIORITY RESEARCH (DIRECTED)
+                elif self.priority_books:
+                    if strategic_targets and pluralism_bypass:
+                        log_action(f"  {Colors.YELLOW}[PLURALISM BYPASS]{Colors.ENDC} Diverting from LLM to User Priority List")
+                    target_book = self.priority_books.pop(0)
+                    print(f"  {Colors.HEADER}[PRIORITY RESEARCH]{Colors.ENDC} Targeting: {Colors.BOLD}{target_book}{Colors.ENDC}", flush=True)
+                    await self.run_annas_layer(target_book)
+                    await self.run_arxiv_layer(f"Critical analysis of {target_book}")
+                
+                # PHASE 2: DISCOVERY (GAP FINDING / ONTOLOGY DRIVEN)
                 else:
-                    discovery_tasks = [
-                        self.run_scihub_layer(target),
-                        self.run_arxiv_layer(target),
-                        self.run_semantic_scholar_layer(target),
-                        self.run_annas_layer(target),
-                    ]
-                    if os.environ.get("STORM_ENABLE_OPENALEX") == "1":
-                        discovery_tasks.append(self.run_openalex_layer(target))
-                    await asyncio.gather(*discovery_tasks)
-            
-            # PROCESSING
-            self.ingest_batch()
-            self.research_planner.apply_cycle_decay() # [SAFETY] Decay LLM influence
-            self.simulate_thought_stream()
-            await asyncio.sleep(2)
+                    if strategic_targets and pluralism_bypass:
+                        log_action(f"  {Colors.YELLOW}[PLURALISM BYPASS]{Colors.ENDC} Diverting from LLM to Ontology Layer")
+                    # 80% chance to derive topic from Ontology (Structured Research)
+                    if random.random() < 0.8:
+                        sub_topic = random.choice(self.ontology.get_all_topics())
+                        context = self.ontology.get_domain_context(sub_topic)
+                        
+                        # Construct a sophisticated academic query
+                        target = f"{sub_topic} {random.choice(self.academic_qualifiers)} \"Dead Internet Theory\""
+                        log_action(f"  {Colors.MAGENTA}[ONTOLOGY FOCUS]{Colors.ENDC} {context} -> '{sub_topic}'")
+                        
+                    # 20% chance for Wildcard Exploration
+                    else:
+                        base = random.choice(seeds)
+                        qualifier = random.choice(self.academic_qualifiers)
+                        target = f"{base} {qualifier}"
+                        log_action(f"  {Colors.CYAN}[WILDCARD EXPLORATION]{Colors.ENDC} '{target}'")
+                    
+                    # [BATCH CHECK] Skip discovery if session limit reached
+                    if self.session_download_count >= self.session_download_limit:
+                        log_action(f"  {Colors.WARNING}[BATCH LIMIT]{Colors.ENDC} 60 files gathered. Skipping discovery until ingested.")
+                    else:
+                        discovery_tasks = [
+                            self.run_scihub_layer(target),
+                            self.run_arxiv_layer(target),
+                            self.run_semantic_scholar_layer(target),
+                            self.run_annas_layer(target),
+                        ]
+                        if os.environ.get("STORM_ENABLE_OPENALEX") == "1":
+                            discovery_tasks.append(self.run_openalex_layer(target))
+                        await asyncio.gather(*discovery_tasks)
+                
+                # PROCESSING
+                self.ingest_batch()
+                self.research_planner.apply_cycle_decay() # [SAFETY] Decay LLM influence
+                self.simulate_thought_stream()
+                await asyncio.sleep(2)
+
+            except Exception as e:
+                error_handler.log_error(e, "Autonomous Loop Cycle")
+                log_action(f"  {Colors.FAIL}[LOOP ERROR]{Colors.ENDC} Recovering in 5s...")
+                await asyncio.sleep(5)
 
 if __name__ == "__main__":
     init_log()

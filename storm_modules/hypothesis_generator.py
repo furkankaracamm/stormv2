@@ -1,6 +1,6 @@
 """Hypothesis Generator - Theory + Gap → Testable Hypotheses"""
 import json
-import sqlite3
+
 from typing import List, Dict
 from storm_modules.config import get_academic_brain_db_path
 from storm_modules.llm_gateway import get_llm_gateway
@@ -12,20 +12,19 @@ class HypothesisGenerator:
         self.theories = self._load_theories()
     
     def _load_theories(self) -> Dict:
+        from storm_modules.db_safety import get_db_connection
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            cursor.execute("SELECT name, core_propositions, typical_hypotheses FROM theories")
-            rows = cursor.fetchall()
-            theories = {}
-            for row in rows:
-                theories[row[0]] = {
-                    'core_propositions': json.loads(row[1]),
-                    'typical_hypotheses': json.loads(row[2])
-                }
-            conn.close()
+            with get_db_connection(self.db_path) as conn:
+                cursor = conn.execute("SELECT name, core_propositions, typical_hypotheses FROM theories")
+                rows = cursor.fetchall()
+                theories = {}
+                for row in rows:
+                    theories[row[0]] = {
+                        'core_propositions': json.loads(row[1]),
+                        'typical_hypotheses': json.loads(row[2])
+                    }
             return theories
-        except (sqlite3.Error, json.JSONDecodeError) as e:
+        except (Exception, json.JSONDecodeError) as e:
             print(f"[THEORY LOAD ERROR] {e}")
             return {}
     
@@ -70,36 +69,37 @@ Output ONLY valid JSON:
             result = self.llm.generate(prompt, max_tokens=2000, temperature=0.4, json_mode=True)
             
             if result:
-                content = result.replace('```json', '').replace('```', '').strip()
-                parsed = json.loads(content)
-                hypotheses = parsed.get('hypotheses', [])
+                from storm_modules.validation_models import HypothesisSet, validate_llm_output
+                validated = validate_llm_output(HypothesisSet, result)
                 
-                if hypotheses:
+                if validated:
+                    hypotheses = [h.dict() for h in validated.hypotheses]
                     self._save_hypotheses(gap_description, theory_name, hypotheses)
-                return hypotheses
+                    return hypotheses
+                else:
+                    print(f"  ⚠ Hypothesis Validation Failed")
+                    
         except Exception as e:
             print(f"[HYPOTHESIS ERROR] {e}")
         return []
     
     def _save_hypotheses(self, gap: str, theory: str, hypotheses: List[Dict]):
+        from storm_modules.db_safety import get_db_connection
         try:
-            conn = sqlite3.connect(self.db_path)
-            cursor = conn.cursor()
-            gap_id = abs(hash(gap)) % 1000000
-            cursor.execute("SELECT id FROM theories WHERE name = ?", (theory,))
-            theory_row = cursor.fetchone()
-            theory_id = theory_row[0] if theory_row else None
-            
-            for h in hypotheses:
-                cursor.execute("""
-                    INSERT INTO hypotheses
-                    (gap_id, theory_id, hypothesis_text, hypothesis_type, variables, expected_effect_size)
-                    VALUES (?, ?, ?, ?, ?, ?)
-                """, (
-                    gap_id, theory_id, h.get('statement'), h.get('type'),
-                    json.dumps(h), h.get('expected_effect_size')
-                ))
-            conn.commit()
-            conn.close()
-        except sqlite3.Error as e:
+            with get_db_connection(self.db_path) as conn:
+                gap_id = abs(hash(gap)) % 1000000
+                cursor = conn.execute("SELECT id FROM theories WHERE name = ?", (theory,))
+                theory_row = cursor.fetchone()
+                theory_id = theory_row[0] if theory_row else None
+                
+                for h in hypotheses:
+                    conn.execute("""
+                        INSERT INTO hypotheses
+                        (gap_id, theory_id, hypothesis_text, hypothesis_type, variables, expected_effect_size)
+                        VALUES (?, ?, ?, ?, ?, ?)
+                    """, (
+                        gap_id, theory_id, h.get('statement'), h.get('type'),
+                        json.dumps(h), h.get('expected_effect_size')
+                    ))
+        except Exception as e:
             print(f"[HYPOTHESIS SAVE ERROR] {e}")
